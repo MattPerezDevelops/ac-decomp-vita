@@ -33,6 +33,7 @@ static void sAdo_Calc_MicPosition_common(f32* fcalc, u16* scalc, const xyz_t* po
         *scalc = val;
     }
 }
+//test
 
 extern void sAdo_Calc_MicPosition_forTrig(f32* fcalc, u16* scalc, const xyz_t* pos) {
     sAdo_Calc_MicPosition_common(fcalc, scalc, pos);
