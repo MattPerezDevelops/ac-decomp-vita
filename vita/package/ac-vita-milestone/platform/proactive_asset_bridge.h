@@ -1,0 +1,116 @@
+/*
+ * Proactive Runtime Asset Bridge
+ * ===============================
+ * Handles ALL asset includes from AC-decomp scan
+ * Routes to runtime loading from external Vita folder
+ */
+
+#ifndef PROACTIVE_ASSET_BRIDGE_H
+#define PROACTIVE_ASSET_BRIDGE_H
+
+// Universal placeholder for runtime asset loading
+extern const unsigned char universal_runtime_asset[];
+
+// Proactive asset symbol redirections
+#define FONT_nes_tex_choice universal_runtime_asset
+#define FONT_nes_tex_cursor universal_runtime_asset
+#define FONT_nes_tex_font1 universal_runtime_asset
+#define FONT_nes_tex_jyouge universal_runtime_asset
+#define FONT_nes_tex_next universal_runtime_asset
+#define FONT_nes_tex_sayuu universal_runtime_asset
+#define __Creator__ universal_runtime_asset
+#define __DateTime__ universal_runtime_asset
+#define aBTD_island_ldr universal_runtime_asset
+#define aBTD_island_prg universal_runtime_asset
+#define aKOI_obj_e_koinobori_a_pal universal_runtime_asset
+#define aLOT_obj_01_lotus_pal universal_runtime_asset
+#define aNNW_client_ldr universal_runtime_asset
+#define aNNW_client_prg universal_runtime_asset
+#define act_ant_tex universal_runtime_asset
+#define act_ant_v universal_runtime_asset
+#define act_ball_b_1_tex universal_runtime_asset
+#define act_ball_b_pal universal_runtime_asset
+#define act_ball_b_v universal_runtime_asset
+#define act_ball_d_1_tex universal_runtime_asset
+#define act_ball_d_2_tex universal_runtime_asset
+#define act_ball_d_3_tex universal_runtime_asset
+#define act_ball_d_pal universal_runtime_asset
+#define act_ball_d_v universal_runtime_asset
+#define act_ball_s_5_tex universal_runtime_asset
+#define act_ball_s_pal universal_runtime_asset
+#define act_ball_s_v universal_runtime_asset
+#define act_balloon_head_tex_rgb_ia8 universal_runtime_asset
+#define act_balloon_v universal_runtime_asset
+#define act_balloon_wire_tex_txt universal_runtime_asset
+#define act_bee_tex_txt universal_runtime_asset
+#define act_bee_v universal_runtime_asset
+#define act_darumaA_act_daruma_pal universal_runtime_asset
+#define act_darumaA_tex universal_runtime_asset
+#define act_darumaA_v universal_runtime_asset
+#define act_darumaB_act_daruma_pal universal_runtime_asset
+#define act_darumaB_tex universal_runtime_asset
+#define act_darumaB_v universal_runtime_asset
+#define act_f01_funa_a_v universal_runtime_asset
+#define act_f01_funa_b_v universal_runtime_asset
+#define act_f01_funa_c_v universal_runtime_asset
+#define act_f01_funa_pal universal_runtime_asset
+#define act_f01_funa_tex universal_runtime_asset
+#define act_f02_hera_a_v universal_runtime_asset
+#define act_f02_hera_b_v universal_runtime_asset
+#define act_f02_hera_c_v universal_runtime_asset
+#define act_f02_hera_pal universal_runtime_asset
+#define act_f02_hera_tex universal_runtime_asset
+#define act_f03_koi_a_v universal_runtime_asset
+#define act_f03_koi_b_v universal_runtime_asset
+#define act_f03_koi_c_v universal_runtime_asset
+#define act_f03_koi_pal universal_runtime_asset
+#define act_f03_koi_tex universal_runtime_asset
+#define act_f04_nisiki_a_v universal_runtime_asset
+#define act_f04_nisiki_b_v universal_runtime_asset
+#define act_f04_nisiki_c_v universal_runtime_asset
+#define act_f04_nisiki_pal universal_runtime_asset
+#define act_f04_nisiki_tex universal_runtime_asset
+#define act_f05_namazu_a_v universal_runtime_asset
+#define act_f05_namazu_b_v universal_runtime_asset
+#define act_f05_namazu_c_v universal_runtime_asset
+#define act_f05_namazu_pal universal_runtime_asset
+#define act_f05_namazu_tex universal_runtime_asset
+#define act_f06_bass_a_v universal_runtime_asset
+#define act_f06_bass_b_v universal_runtime_asset
+#define act_f06_bass_c_v universal_runtime_asset
+#define act_f06_bass_pal universal_runtime_asset
+#define act_f06_bass_tex universal_runtime_asset
+#define act_f07_bassm_a_v universal_runtime_asset
+#define act_f07_bassm_b_v universal_runtime_asset
+#define act_f07_bassm_c_v universal_runtime_asset
+#define act_f07_bassm_pal universal_runtime_asset
+#define act_f07_bassm_tex universal_runtime_asset
+#define act_f08_bassl_a_v universal_runtime_asset
+#define act_f08_bassl_b_v universal_runtime_asset
+#define act_f08_bassl_c_v universal_runtime_asset
+#define act_f08_bassl_pal universal_runtime_asset
+#define act_f08_bassl_tex universal_runtime_asset
+#define act_f09_gill_a_v universal_runtime_asset
+#define act_f09_gill_b_v universal_runtime_asset
+#define act_f09_gill_c_v universal_runtime_asset
+#define act_f09_gill_pal universal_runtime_asset
+#define act_f09_gill_tex universal_runtime_asset
+#define act_f10_oonamazu_a_v universal_runtime_asset
+#define act_f10_oonamazu_b_v universal_runtime_asset
+#define act_f10_oonamazu_c_v universal_runtime_asset
+#define act_f10_oonamazu_pal universal_runtime_asset
+#define act_f10_oonamazu_tex universal_runtime_asset
+#define act_f11_raigyo_a_v universal_runtime_asset
+#define act_f11_raigyo_b_v universal_runtime_asset
+#define act_f11_raigyo_c_v universal_runtime_asset
+#define act_f11_raigyo_pal universal_runtime_asset
+#define act_f11_raigyo_tex universal_runtime_asset
+#define act_f12_nigoi_a_v universal_runtime_asset
+#define act_f12_nigoi_b_v universal_runtime_asset
+#define act_f12_nigoi_c_v universal_runtime_asset
+#define act_f12_nigoi_pal universal_runtime_asset
+#define act_f12_nigoi_tex universal_runtime_asset
+#define act_f13_ugui_a_v universal_runtime_asset
+#define act_f13_ugui_b_v universal_runtime_asset
+
+#endif // PROACTIVE_ASSET_BRIDGE_H

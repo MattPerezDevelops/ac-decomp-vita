@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<livearea style="a1" format-ver="01.00" content-rev="1">
+    <livearea-background>
+        <image>bg.png</image>
+    </livearea-background>
+    
+    <gate>
+        <startup-image>startup.png</startup-image>
+    </gate>
+    
+    <frame id="frame2">
+        <liveitem>
+            <text align="left" text-align="left" text-valign="center" line-space="3" ellipsis="on">
+                <str color="#ffffff" size="18" bold="on" shadow="on">Animal Crossing</str>
+            </text>
+        </liveitem>
+    </frame>
+    
+    <frame id="frame3">
+        <liveitem>
+            <text align="left" text-align="left" text-valign="top" line-space="2" ellipsis="on">
+                <str color="#ffffff" size="12" shadow="on">Life simulation game</str>
+            </text>
+        </liveitem>
+    </frame>
+    
+    <frame id="frame4">
+        <liveitem>
+            <text align="left" text-align="left" text-valign="top" line-space="2" ellipsis="on">
+                <str color="#ffffff" size="10" shadow="on">Vita Port v1.0</str>
+            </text>
+        </liveitem>
+    </frame>
+</livearea> 
