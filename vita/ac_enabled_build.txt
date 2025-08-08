@@ -1,0 +1,40 @@
+-- The C compiler identification is GNU 10.3.0
+-- The CXX compiler identification is GNU 10.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/local/vitasdk/bin/arm-vita-eabi-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/local/vitasdk/bin/arm-vita-eabi-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Deprecation Warning at /usr/local/vitasdk/share/vita.cmake:14 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+Call Stack (most recent call first):
+  CMakeLists.txt:7 (include)
+
+
+-- Building ENHANCED TEXTURE VPK - Adaptive rendering for GameCube formats
+-- Configuring done (1.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: /workspace/vita/build
+🎮 Animal Crossing Vita v02.00
+Build Type: RUNTIME
+Debug: OFF
+AC-Decomp: OFF
+Generated: $
+[ 50%] Building C object CMakeFiles/AnimalCrossingVita.dir/platform/ac_runtime_asset_loader.c.obj
+[ 50%] Building C object CMakeFiles/AnimalCrossingVita.dir/platform/enhanced_texture_renderer.c.obj
+[ 50%] Building C object CMakeFiles/AnimalCrossingVita.dir/platform/vita_main_ultimate.c.obj
+[ 50%] Built target build_info
+[ 66%] Linking C executable AnimalCrossingVita
+[ 66%] Built target AnimalCrossingVita
+[ 83%] Converting to Sony ELF AnimalCrossingVita.velf
+[ 83%] Built target AnimalCrossingVita-velf
+[100%] Creating SELF AnimalCrossingVita.self
