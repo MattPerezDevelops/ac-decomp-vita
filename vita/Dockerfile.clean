@@ -1,0 +1,37 @@
+# Animal Crossing Vita - Clean Build Environment
+FROM --platform=linux/amd64 vitasdk/vitasdk:latest
+
+LABEL description="AC-Decomp Vita clean build environment"
+LABEL version="3.0.0"
+
+# Install essential packages
+RUN apk update && apk add --no-cache \
+    git build-base cmake ninja \
+    python3 py3-pip py3-pillow py3-numpy \
+    && rm -rf /var/cache/apk/*
+
+# Build VitaGL with proven stable configuration
+RUN git clone https://github.com/Rinnegatamante/vitaGL.git /tmp/vitaGL \
+    && cd /tmp/vitaGL \
+    && git reset --hard 9c963ab \
+    && make HAVE_SBRK=1 HAVE_SHARK=1 install -j4 \
+    && rm -rf /tmp/vitaGL
+
+# Build supporting libraries
+RUN git clone https://github.com/bythos14/SceShaccCgExt.git /tmp/SceShaccCgExt \
+    && cd /tmp/SceShaccCgExt \
+    && mkdir build && cd build \
+    && cmake .. -DCMAKE_BUILD_TYPE=Release \
+    && make -j4 && make install \
+    && rm -rf /tmp/SceShaccCgExt
+
+RUN git clone https://github.com/Rinnegatamante/vitaShaRK.git /tmp/vitaShaRK \
+    && cd /tmp/vitaShaRK \
+    && make install -j4 \
+    && rm -rf /tmp/vitaShaRK
+
+# Set up environment
+WORKDIR /workspace
+ENV AC_VITA_BUILD=1
+ENV TARGET_VITA=1  
+ENV CMAKE_TOOLCHAIN_FILE="$VITASDK/share/vita.toolchain.cmake" 

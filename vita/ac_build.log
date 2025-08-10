@@ -1,0 +1,700 @@
+[  3%] Building C object CMakeFiles/AnimalCrossingVita.dir/workspace/ac-decomp-upstream/src/game/m_actor.c.obj
+[  6%] Building C object CMakeFiles/AnimalCrossingVita.dir/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c.obj
+[  9%] Building C object CMakeFiles/AnimalCrossingVita.dir/workspace/ac-decomp-upstream/src/system/sys_math3d.c.obj
+[ 12%] Building C object CMakeFiles/AnimalCrossingVita.dir/workspace/ac-decomp-upstream/src/system/sys_math_atan.c.obj
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:99: warning: "ENVIRONMENT" redefined
+   99 | #define ENVIRONMENT 1
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:82: note: this is the location of the previous definition
+   82 | #define ENVIRONMENT     0x03
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:100: warning: "TEXEL0" redefined
+  100 | #define TEXEL0 2
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:81: note: this is the location of the previous definition
+   81 | #define TEXEL0          0x01
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:4,
+                 from /workspace/ac-decomp-upstream/src/game/m_actor.c:1:
+/workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:35: warning: "INT_MIN" redefined
+   35 | #define INT_MIN -2147483648
+      | 
+In file included from /usr/local/vitasdk/arm-vita-eabi/include/bits/posix_opt.h:4,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/sys/features.h:333,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/machine/_default_types.h:8,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/stdint.h:12,
+                 from /usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdint.h:9,
+                 from /workspace/vita/platform/ac_vita_platform_minimal.h:12,
+                 from <command-line>:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include-fixed/limits.h:83: note: this is the location of the previous definition
+   83 | #define INT_MIN (-INT_MAX - 1)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:4,
+                 from /workspace/ac-decomp-upstream/src/game/m_actor.c:1:
+/workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:36: warning: "INT_MAX" redefined
+   36 | #define INT_MAX 2147483647
+      | 
+In file included from /usr/local/vitasdk/arm-vita-eabi/include/bits/posix_opt.h:4,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/sys/features.h:333,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/machine/_default_types.h:8,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/stdint.h:12,
+                 from /usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdint.h:9,
+                 from /workspace/vita/platform/ac_vita_platform_minimal.h:12,
+                 from <command-line>:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include-fixed/limits.h:85: note: this is the location of the previous definition
+   85 | #define INT_MAX __INT_MAX__
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:47,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:4,
+                 from /workspace/ac-decomp-upstream/src/game/m_actor.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libc/stdarg.h:30: warning: "va_start" redefined
+   30 | #define va_start(v, l) __builtin_va_start(v, l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/libc/stdio.h:4,
+                 from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:46,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:4,
+                 from /workspace/ac-decomp-upstream/src/game/m_actor.c:1:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdarg.h:47: note: this is the location of the previous definition
+   47 | #define va_start(v,l) __builtin_va_start(v,l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:47,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:4,
+                 from /workspace/ac-decomp-upstream/src/game/m_actor.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libc/stdarg.h:32: warning: "va_arg" redefined
+   32 | #define va_arg(v, l) __builtin_va_arg(v, l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/libc/stdio.h:4,
+                 from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:46,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:4,
+                 from /workspace/ac-decomp-upstream/src/game/m_actor.c:1:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdarg.h:49: note: this is the location of the previous definition
+   49 | #define va_arg(v,l) __builtin_va_arg(v,l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/PR/mbi.h:63,
+                 from /workspace/vita/../ac-decomp-upstream/include/graph.h:5,
+                 from /workspace/vita/../ac-decomp-upstream/include/game.h:7,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:6,
+                 from /workspace/ac-decomp-upstream/src/game/m_actor.c:1:
+/workspace/vita/../ac-decomp-upstream/include/PR/gbi.h:353: warning: "G_CULL_BACK" redefined
+  353 | # define G_CULL_BACK  0x00002000
+      | 
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:105: note: this is the location of the previous definition
+  105 | #define G_CULL_BACK 0x00001000
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/dolphin/gx/GXStruct.h:6,
+                 from /workspace/vita/../ac-decomp-upstream/include/dolphin/gx.h:11,
+                 from /workspace/vita/../ac-decomp-upstream/include/libforest/gbi_extensions.h:12,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_lights.h:5,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:8,
+                 from /workspace/ac-decomp-upstream/src/game/m_actor.c:1:
+/workspace/vita/../ac-decomp-upstream/include/dolphin/vi.h:73:31: warning: 'struct _GXRenderModeObj' declared inside parameter list will not be visible outside of this definition or declaration
+   73 | void VIConfigure(const struct _GXRenderModeObj *rm);
+      |                               ^~~~~~~~~~~~~~~~
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:99: warning: "ENVIRONMENT" redefined
+   99 | #define ENVIRONMENT 1
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:82: note: this is the location of the previous definition
+   82 | #define ENVIRONMENT     0x03
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:100: warning: "TEXEL0" redefined
+  100 | #define TEXEL0 2
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:81: note: this is the location of the previous definition
+   81 | #define TEXEL0          0x01
+      | 
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:99: warning: "ENVIRONMENT" redefined
+   99 | #define ENVIRONMENT 1
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:82: note: this is the location of the previous definition
+   82 | #define ENVIRONMENT     0x03
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:100: warning: "TEXEL0" redefined
+  100 | #define TEXEL0 2
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:81: note: this is the location of the previous definition
+   81 | #define TEXEL0          0x01
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/ac_animal_logo.h:4,
+                 from /workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:1:
+/workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:35: warning: "INT_MIN" redefined
+   35 | #define INT_MIN -2147483648
+      | 
+In file included from /usr/local/vitasdk/arm-vita-eabi/include/bits/posix_opt.h:4,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/sys/features.h:333,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/machine/_default_types.h:8,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/stdint.h:12,
+                 from /usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdint.h:9,
+                 from /workspace/vita/platform/ac_vita_platform_minimal.h:12,
+                 from <command-line>:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include-fixed/limits.h:83: note: this is the location of the previous definition
+   83 | #define INT_MIN (-INT_MAX - 1)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/ac_animal_logo.h:4,
+                 from /workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:1:
+/workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:36: warning: "INT_MAX" redefined
+   36 | #define INT_MAX 2147483647
+      | 
+In file included from /usr/local/vitasdk/arm-vita-eabi/include/bits/posix_opt.h:4,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/sys/features.h:333,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/machine/_default_types.h:8,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/stdint.h:12,
+                 from /usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdint.h:9,
+                 from /workspace/vita/platform/ac_vita_platform_minimal.h:12,
+                 from <command-line>:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include-fixed/limits.h:85: note: this is the location of the previous definition
+   85 | #define INT_MAX __INT_MAX__
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math3d.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math3d.c:1:
+/workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:35: warning: "INT_MIN" redefined
+   35 | #define INT_MIN -2147483648
+      | 
+In file included from /usr/local/vitasdk/arm-vita-eabi/include/bits/posix_opt.h:4,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/sys/features.h:333,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/machine/_default_types.h:8,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/stdint.h:12,
+                 from /usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdint.h:9,
+                 from /workspace/vita/platform/ac_vita_platform_minimal.h:12,
+                 from <command-line>:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include-fixed/limits.h:83: note: this is the location of the previous definition
+   83 | #define INT_MIN (-INT_MAX - 1)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math3d.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math3d.c:1:
+/workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:36: warning: "INT_MAX" redefined
+   36 | #define INT_MAX 2147483647
+      | 
+In file included from /usr/local/vitasdk/arm-vita-eabi/include/bits/posix_opt.h:4,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/sys/features.h:333,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/machine/_default_types.h:8,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/stdint.h:12,
+                 from /usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdint.h:9,
+                 from /workspace/vita/platform/ac_vita_platform_minimal.h:12,
+                 from <command-line>:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include-fixed/limits.h:85: note: this is the location of the previous definition
+   85 | #define INT_MAX __INT_MAX__
+      | 
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:99: warning: "ENVIRONMENT" redefined
+   99 | #define ENVIRONMENT 1
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:82: note: this is the location of the previous definition
+   82 | #define ENVIRONMENT     0x03
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:47,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/ac_animal_logo.h:4,
+                 from /workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libc/stdarg.h:30: warning: "va_start" redefined
+   30 | #define va_start(v, l) __builtin_va_start(v, l)
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:100: warning: "TEXEL0" redefined
+  100 | #define TEXEL0 2
+      | 
+/workspace/vita/platform/ac_vita_platform_minimal.h:81: note: this is the location of the previous definition
+   81 | #define TEXEL0          0x01
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/libc/stdio.h:4,
+                 from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:46,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/ac_animal_logo.h:4,
+                 from /workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:1:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdarg.h:47: note: this is the location of the previous definition
+   47 | #define va_start(v,l) __builtin_va_start(v,l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:47,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/ac_animal_logo.h:4,
+                 from /workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libc/stdarg.h:32: warning: "va_arg" redefined
+   32 | #define va_arg(v, l) __builtin_va_arg(v, l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/libc/stdio.h:4,
+                 from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:46,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/ac_animal_logo.h:4,
+                 from /workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:1:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdarg.h:49: note: this is the location of the previous definition
+   49 | #define va_arg(v,l) __builtin_va_arg(v,l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:47,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math3d.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math3d.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libc/stdarg.h:30: warning: "va_start" redefined
+   30 | #define va_start(v, l) __builtin_va_start(v, l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/libc/stdio.h:4,
+                 from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:46,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math3d.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math3d.c:1:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdarg.h:47: note: this is the location of the previous definition
+   47 | #define va_start(v,l) __builtin_va_start(v,l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:47,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math3d.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math3d.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libc/stdarg.h:32: warning: "va_arg" redefined
+   32 | #define va_arg(v, l) __builtin_va_arg(v, l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/libc/stdio.h:4,
+                 from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:46,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math3d.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math3d.c:1:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdarg.h:49: note: this is the location of the previous definition
+   49 | #define va_arg(v,l) __builtin_va_arg(v,l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/PR/mbi.h:63,
+                 from /workspace/vita/../ac-decomp-upstream/include/graph.h:5,
+                 from /workspace/vita/../ac-decomp-upstream/include/game.h:7,
+                 from /workspace/vita/../ac-decomp-upstream/include/ac_animal_logo.h:5,
+                 from /workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:1:
+/workspace/vita/../ac-decomp-upstream/include/PR/gbi.h:353: warning: "G_CULL_BACK" redefined
+  353 | # define G_CULL_BACK  0x00002000
+      | 
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:105: note: this is the location of the previous definition
+  105 | #define G_CULL_BACK 0x00001000
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math_atan.c:1:
+/workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:35: warning: "INT_MIN" redefined
+   35 | #define INT_MIN -2147483648
+      | 
+In file included from /usr/local/vitasdk/arm-vita-eabi/include/bits/posix_opt.h:4,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/sys/features.h:333,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/machine/_default_types.h:8,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/stdint.h:12,
+                 from /usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdint.h:9,
+                 from /workspace/vita/platform/ac_vita_platform_minimal.h:12,
+                 from <command-line>:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include-fixed/limits.h:83: note: this is the location of the previous definition
+   83 | #define INT_MIN (-INT_MAX - 1)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math_atan.c:1:
+/workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:36: warning: "INT_MAX" redefined
+   36 | #define INT_MAX 2147483647
+      | 
+In file included from /usr/local/vitasdk/arm-vita-eabi/include/bits/posix_opt.h:4,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/sys/features.h:333,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/machine/_default_types.h:8,
+                 from /usr/local/vitasdk/arm-vita-eabi/include/stdint.h:12,
+                 from /usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdint.h:9,
+                 from /workspace/vita/platform/ac_vita_platform_minimal.h:12,
+                 from <command-line>:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include-fixed/limits.h:85: note: this is the location of the previous definition
+   85 | #define INT_MAX __INT_MAX__
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:47,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math_atan.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libc/stdarg.h:30: warning: "va_start" redefined
+   30 | #define va_start(v, l) __builtin_va_start(v, l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/libc/stdio.h:4,
+                 from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:46,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math_atan.c:1:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdarg.h:47: note: this is the location of the previous definition
+   47 | #define va_start(v,l) __builtin_va_start(v,l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:47,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math_atan.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libc/stdarg.h:32: warning: "va_arg" redefined
+   32 | #define va_arg(v, l) __builtin_va_arg(v, l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/libc/stdio.h:4,
+                 from /workspace/vita/../ac-decomp-upstream/include/dolphin/types.h:46,
+                 from /workspace/vita/../ac-decomp-upstream/include/types.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math_atan.c:1:
+/usr/local/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/include/stdarg.h:49: note: this is the location of the previous definition
+   49 | #define va_arg(v,l) __builtin_va_arg(v,l)
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/PR/mbi.h:63,
+                 from /workspace/vita/../ac-decomp-upstream/include/graph.h:5,
+                 from /workspace/vita/../ac-decomp-upstream/include/game.h:7,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_lib.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math3d.h:5,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math3d.c:1:
+/workspace/vita/../ac-decomp-upstream/include/PR/gbi.h:353: warning: "G_CULL_BACK" redefined
+  353 | # define G_CULL_BACK  0x00002000
+      | 
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:105: note: this is the location of the previous definition
+  105 | #define G_CULL_BACK 0x00001000
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/m_lights.h:5,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:8,
+                 from /workspace/ac-decomp-upstream/src/game/m_actor.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libforest/gbi_extensions.h:132: warning: "G_SPECIAL_NONE" redefined
+  132 | #define G_SPECIAL_NONE 0
+      | 
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:95: note: this is the location of the previous definition
+   95 | #define G_SPECIAL_NONE 0x00
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/m_lights.h:5,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:8,
+                 from /workspace/ac-decomp-upstream/src/game/m_actor.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libforest/gbi_extensions.h:152: warning: "TEV_PRIMITIVE" redefined
+  152 | #define TEV_PRIMITIVE 4
+      | 
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:102: note: this is the location of the previous definition
+  102 | #define TEV_PRIMITIVE 0
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/PR/mbi.h:63,
+                 from /workspace/vita/../ac-decomp-upstream/include/graph.h:5,
+                 from /workspace/vita/../ac-decomp-upstream/include/game.h:7,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_lib.h:9,
+                 from /workspace/vita/../ac-decomp-upstream/include/sys_math.h:10,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math_atan.c:1:
+/workspace/vita/../ac-decomp-upstream/include/PR/gbi.h:353: warning: "G_CULL_BACK" redefined
+  353 | # define G_CULL_BACK  0x00002000
+      | 
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:105: note: this is the location of the previous definition
+  105 | #define G_CULL_BACK 0x00001000
+      | 
+In file included from /workspace/ac-decomp-upstream/src/game/m_actor.c:1:
+/workspace/vita/../ac-decomp-upstream/include/m_actor.h:775:1: warning: useless storage class specifier in empty declaration
+  775 | };
+      | ^
+In file included from /workspace/vita/../ac-decomp-upstream/include/dolphin/gx/GXStruct.h:6,
+                 from /workspace/vita/../ac-decomp-upstream/include/dolphin/gx.h:11,
+                 from /workspace/vita/../ac-decomp-upstream/include/libforest/gbi_extensions.h:12,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_lights.h:5,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:8,
+                 from /workspace/vita/../ac-decomp-upstream/include/ac_animal_logo.h:6,
+                 from /workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:1:
+/workspace/vita/../ac-decomp-upstream/include/dolphin/vi.h:73:31: warning: 'struct _GXRenderModeObj' declared inside parameter list will not be visible outside of this definition or declaration
+   73 | void VIConfigure(const struct _GXRenderModeObj *rm);
+      |                               ^~~~~~~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3d_normalizeXyz_t':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:22:16: warning: implicit declaration of function 'fabsf' [-Wimplicit-function-declaration]
+   22 |     if ((float)fabsf(l) < 0.008f) {
+      |                ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:22:16: warning: incompatible implicit declaration of built-in function 'fabsf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:2:1: note: include '<math.h>' or provide a declaration of 'fabsf'
+    1 | #include "sys_math3d.h"
+  +++ |+#include <math.h>
+    2 | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/sys_math3d.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math3d.c:1:
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: At top level:
+/workspace/vita/../ac-decomp-upstream/include/types.h:134:39: error: expected ')' before string constant
+  134 | #define FORCESTRIP __declspec(section "forcestrip")
+      |                                       ^~~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:46:1: note: in expansion of macro 'FORCESTRIP'
+   46 | FORCESTRIP f32 Math3D_Check2DInArea() {
+      | ^~~~~~~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3DVecLength2D':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:144:12: warning: implicit declaration of function 'sqrtf' [-Wimplicit-function-declaration]
+  144 |     return sqrtf(Math3DVecLengthSquare2D(a, b));
+      |            ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:144:12: warning: incompatible implicit declaration of built-in function 'sqrtf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:144:12: note: include '<math.h>' or provide a declaration of 'sqrtf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3DLength2D':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:152:12: warning: incompatible implicit declaration of built-in function 'sqrtf'
+  152 |     return sqrtf(Math3DLengthSquare2D(x0, x1, y0, y1));
+      |            ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:152:12: note: include '<math.h>' or provide a declaration of 'sqrtf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3DVecLength':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:161:12: warning: implicit declaration of function 'sqrt' [-Wimplicit-function-declaration]
+  161 |     return sqrt(sqr_len);
+      |            ^~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:161:12: warning: incompatible implicit declaration of built-in function 'sqrt'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:161:12: note: include '<math.h>' or provide a declaration of 'sqrt'
+In file included from /workspace/vita/../ac-decomp-upstream/include/m_lights.h:5,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:8,
+                 from /workspace/vita/../ac-decomp-upstream/include/ac_animal_logo.h:6,
+                 from /workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libforest/gbi_extensions.h:132: warning: "G_SPECIAL_NONE" redefined
+  132 | #define G_SPECIAL_NONE 0
+      | 
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:95: note: this is the location of the previous definition
+   95 | #define G_SPECIAL_NONE 0x00
+      | 
+In file included from /workspace/vita/../ac-decomp-upstream/include/m_lights.h:5,
+                 from /workspace/vita/../ac-decomp-upstream/include/m_actor.h:8,
+                 from /workspace/vita/../ac-decomp-upstream/include/ac_animal_logo.h:6,
+                 from /workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:1:
+/workspace/vita/../ac-decomp-upstream/include/libforest/gbi_extensions.h:152: warning: "TEV_PRIMITIVE" redefined
+  152 | #define TEV_PRIMITIVE 4
+      | 
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:102: note: this is the location of the previous definition
+  102 | #define TEV_PRIMITIVE 0
+      | 
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3DPlane':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:221:10: warning: incompatible implicit declaration of built-in function 'sqrtf'
+  221 |     nm = sqrtf((mult_vec.x * mult_vec.x) + (mult_vec.y * mult_vec.y) + (mult_vec.z * mult_vec.z));
+      |          ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:221:10: note: include '<math.h>' or provide a declaration of 'sqrtf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:223:11: warning: incompatible implicit declaration of built-in function 'fabsf'
+  223 |     if (!(fabsf(nm) < 0.008f)) {
+      |           ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:223:11: note: include '<math.h>' or provide a declaration of 'fabsf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3DLengthPlaneAndPos':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:260:15: warning: incompatible implicit declaration of built-in function 'fabsf'
+  260 |     f32 res = fabsf(Math3DSignedLengthPlaneAndPos(nox, noy, noz, odist, pl));
+      |               ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:260:15: note: include '<math.h>' or provide a declaration of 'fabsf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3DSignedLengthPlaneAndPos':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:268:10: warning: incompatible implicit declaration of built-in function 'sqrtf'
+  268 |     nm = sqrtf((nox * nox) + (noy * noy) + (noz * noz));
+      |          ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:268:10: note: include '<math.h>' or provide a declaration of 'sqrtf'
+In file included from /workspace/vita/../ac-decomp-upstream/include/sys_math3d.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math3d.c:1:
+/workspace/vita/../ac-decomp-upstream/include/types.h:115:25: warning: incompatible implicit declaration of built-in function 'fabsf'
+  115 | #define F32_IS_ZERO(v) (fabsf(v) < 0.008f)
+      |                         ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:270:9: note: in expansion of macro 'F32_IS_ZERO'
+  270 |     if (F32_IS_ZERO(nm)) {
+      |         ^~~~~~~~~~~
+/workspace/vita/../ac-decomp-upstream/include/types.h:115:25: note: include '<math.h>' or provide a declaration of 'fabsf'
+  115 | #define F32_IS_ZERO(v) (fabsf(v) < 0.008f)
+      |                         ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:270:9: note: in expansion of macro 'F32_IS_ZERO'
+  270 |     if (F32_IS_ZERO(nm)) {
+      |         ^~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3DTriangleCrossYCheck_general':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:304:9: warning: incompatible implicit declaration of built-in function 'fabsf'
+  304 |     if (fabsf(noy) > 0.5f) {
+      |         ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:304:9: note: include '<math.h>' or provide a declaration of 'fabsf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3DTriangleCrossYLine_scope':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:326:16: warning: implicit declaration of function '__fabs' [-Wimplicit-function-declaration]
+  326 |     if ((float)__fabs(noy) < 0.008f) {
+      |                ^~~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3DTriangleCrossXCheck_general':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:374:9: warning: incompatible implicit declaration of built-in function 'fabsf'
+  374 |     if (fabsf(nox) > 0.5f) {
+      |         ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:374:9: note: include '<math.h>' or provide a declaration of 'fabsf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3D_sphereCrossLineSegment':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:500:9: warning: incompatible implicit declaration of built-in function 'fabsf'
+  500 |     if (fabsf(delta_sq) < 0.008f) {
+      |         ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:500:9: note: include '<math.h>' or provide a declaration of 'fabsf'
+In file included from /workspace/vita/../ac-decomp-upstream/include/ac_animal_logo.h:6,
+                 from /workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:1:
+/workspace/vita/../ac-decomp-upstream/include/m_actor.h:775:1: warning: useless storage class specifier in empty declaration
+  775 | };
+      | ^
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3D_sphereCrossTriangleCalc_cp':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:536:9: warning: incompatible implicit declaration of built-in function 'fabsf'
+  536 |     if (fabsf(dst) < 0.008f) {
+      |         ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:536:9: note: include '<math.h>' or provide a declaration of 'fabsf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3D_sphereCrossTriangle3_cp':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:607:9: warning: incompatible implicit declaration of built-in function 'fabsf'
+  607 |     if (fabsf(tri->plane.normal.y) > 0.5f) {
+      |         ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:607:9: note: include '<math.h>' or provide a declaration of 'fabsf'
+In file included from /workspace/vita/../ac-decomp-upstream/include/sys_math3d.h:4,
+                 from /workspace/ac-decomp-upstream/src/system/sys_math3d.c:1:
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3D_pipeCrossLine':
+/workspace/vita/../ac-decomp-upstream/include/types.h:115:25: warning: incompatible implicit declaration of built-in function 'fabsf'
+  115 | #define F32_IS_ZERO(v) (fabsf(v) < 0.008f)
+      |                         ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:689:10: note: in expansion of macro 'F32_IS_ZERO'
+  689 |     if (!F32_IS_ZERO(ab.y)) {
+      |          ^~~~~~~~~~~
+/workspace/vita/../ac-decomp-upstream/include/types.h:115:25: note: include '<math.h>' or provide a declaration of 'fabsf'
+  115 | #define F32_IS_ZERO(v) (fabsf(v) < 0.008f)
+      |                         ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:689:10: note: in expansion of macro 'F32_IS_ZERO'
+  689 |     if (!F32_IS_ZERO(ab.y)) {
+      |          ^~~~~~~~~~~
+/workspace/vita/../ac-decomp-upstream/include/types.h:115:25: warning: incompatible implicit declaration of built-in function 'fabsf'
+  115 | #define F32_IS_ZERO(v) (fabsf(v) < 0.008f)
+      |                         ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:721:10: note: in expansion of macro 'F32_IS_ZERO'
+  721 |     if (!F32_IS_ZERO(t2)) {
+      |          ^~~~~~~~~~~
+/workspace/vita/../ac-decomp-upstream/include/types.h:115:25: note: include '<math.h>' or provide a declaration of 'fabsf'
+  115 | #define F32_IS_ZERO(v) (fabsf(v) < 0.008f)
+      |                         ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:721:10: note: in expansion of macro 'F32_IS_ZERO'
+  721 |     if (!F32_IS_ZERO(t2)) {
+      |          ^~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:735:26: warning: incompatible implicit declaration of built-in function 'sqrtf'
+  735 |         dc = z >= 0.0f ? sqrtf(dc) : 0.0f;
+      |                          ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:735:26: note: include '<math.h>' or provide a declaration of 'sqrtf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3D_pipeCrossTriangle_cp':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:894:18: warning: incompatible implicit declaration of built-in function 'sqrtf'
+  894 |         civovi = sqrtf(SQ(dmf.x) + SQ(dmf.z));
+      |                  ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:894:18: note: include '<math.h>' or provide a declaration of 'sqrtf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:896:13: warning: incompatible implicit declaration of built-in function 'fabsf'
+  896 |         if (fabsf(civovi) < 0.008f) {
+      |             ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:896:13: note: include '<math.h>' or provide a declaration of 'fabsf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3D_sphereCrossSphere_cl_cc':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:929:14: warning: incompatible implicit declaration of built-in function 'sqrt'
+  929 |     *cdist = sqrt(dx * dx + dy * dy + dz * dz);
+      |              ^~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:929:14: note: include '<math.h>' or provide a declaration of 'sqrt'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3D_sphereVsPipe_cl_cc':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:973:14: warning: incompatible implicit declaration of built-in function 'sqrtf'
+  973 |     *cdist = sqrtf(SQ(x) + SQ(z));
+      |              ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:973:14: note: include '<math.h>' or provide a declaration of 'sqrtf'
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c: In function 'Math3D_pipeVsPipe_cl_cc':
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:1007:11: warning: incompatible implicit declaration of built-in function 'sqrtf'
+ 1007 |     *di = sqrtf((pipe1f.center.x - pipe2f.center.x) * (pipe1f.center.x - pipe2f.center.x) +
+      |           ^~~~~
+/workspace/ac-decomp-upstream/src/system/sys_math3d.c:1007:11: note: include '<math.h>' or provide a declaration of 'sqrtf'
+make[2]: *** [CMakeFiles/AnimalCrossingVita.dir/build.make:272: CMakeFiles/AnimalCrossingVita.dir/workspace/ac-decomp-upstream/src/system/sys_math3d.c.obj] Error 1
+make[2]: *** Waiting for unfinished jobs....
+/workspace/ac-decomp-upstream/src/game/m_actor.c: In function 'Actor_draw_actor_no_culling_check2':
+/workspace/ac-decomp-upstream/src/game/m_actor.c:278:19: warning: implicit declaration of function 'fabsf' [-Wimplicit-function-declaration]
+  278 |         if ((m * (fabsf(camera_pos->x) - actor->cull_width)) < 1.0f &&
+      |                   ^~~~~
+/workspace/ac-decomp-upstream/src/game/m_actor.c:278:19: warning: incompatible implicit declaration of built-in function 'fabsf'
+/workspace/ac-decomp-upstream/src/game/m_actor.c:21:1: note: include '<math.h>' or provide a declaration of 'fabsf'
+   20 | #include "m_common_data.h"
+  +++ |+#include <math.h>
+   21 | 
+/workspace/ac-decomp-upstream/src/game/m_actor.c: In function 'HiliteReflect_new':
+/workspace/ac-decomp-upstream/src/game/m_actor.c:913:42: error: request for member 'x1' in something not a structure or union
+  913 |     gDPSetTileSize(gfx++, 1, (*hilite)->h.x1, (*hilite)->h.y1, (*hilite)->h.x1 + 60, (*hilite)->h.y1 + 60);
+      |                                          ^
+/workspace/ac-decomp-upstream/src/game/m_actor.c:913:59: error: request for member 'y1' in something not a structure or union
+  913 |     gDPSetTileSize(gfx++, 1, (*hilite)->h.x1, (*hilite)->h.y1, (*hilite)->h.x1 + 60, (*hilite)->h.y1 + 60);
+      |                                                           ^
+/workspace/ac-decomp-upstream/src/game/m_actor.c:913:76: error: request for member 'x1' in something not a structure or union
+  913 |     gDPSetTileSize(gfx++, 1, (*hilite)->h.x1, (*hilite)->h.y1, (*hilite)->h.x1 + 60, (*hilite)->h.y1 + 60);
+      |                                                                            ^
+/workspace/ac-decomp-upstream/src/game/m_actor.c:913:98: error: request for member 'y1' in something not a structure or union
+  913 |     gDPSetTileSize(gfx++, 1, (*hilite)->h.x1, (*hilite)->h.y1, (*hilite)->h.x1 + 60, (*hilite)->h.y1 + 60);
+      |                                                                                                  ^
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c: In function 'aAL_copyright_draw':
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:355:3: warning: implicit declaration of function 'gDPSetPrimColor'; did you mean 'gDPSetEnvColor'? [-Wimplicit-function-declaration]
+  355 |   gDPSetPrimColor(gfx++, 0, 255, 40, 40, 45, actor->copyright_opacity);
+      |   ^~~~~~~~~~~~~~~
+      |   gDPSetEnvColor
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:358:3: warning: implicit declaration of function 'gSPLoadGeometryMode'; did you mean 'gsSPLoadGeometryMode'? [-Wimplicit-function-declaration]
+  358 |   gSPLoadGeometryMode(gfx++, 0);
+      |   ^~~~~~~~~~~~~~~~~~~
+      |   gsSPLoadGeometryMode
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:359:3: warning: implicit declaration of function 'gDPSetCombineMode'; did you mean 'gDPSetCombineLERP'? [-Wimplicit-function-declaration]
+  359 |   gDPSetCombineMode(gfx++, G_CC_TITLE, G_CC_TITLE);
+      |   ^~~~~~~~~~~~~~~~~
+      |   gDPSetCombineLERP
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c: In function 'aAL_tm_draw':
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:427:5: warning: implicit declaration of function 'gsDPSetCombineMode'; did you mean 'gDPSetCombineLERP'? [-Wimplicit-function-declaration]
+  427 |     gsDPSetCombineMode(G_CC_TM, G_CC_TM),
+      |     ^~~~~~~~~~~~~~~~~~
+      |     gDPSetCombineLERP
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:427:5: error: initializer element is not constant
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:427:5: note: (near initialization for 'init_disp[2].<anonymous>.<anonymous>.w0')
+make[2]: *** [CMakeFiles/AnimalCrossingVita.dir/build.make:174: CMakeFiles/AnimalCrossingVita.dir/workspace/ac-decomp-upstream/src/game/m_actor.c.obj] Error 1
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:428:5: warning: implicit declaration of function 'gsSPEndDisplayList'; did you mean 'gsEndDisplayList'? [-Wimplicit-function-declaration]
+  428 |     gsSPEndDisplayList()
+      |     ^~~~~~~~~~~~~~~~~~
+      |     gsEndDisplayList
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:428:5: error: initializer element is not constant
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:428:5: note: (near initialization for 'init_disp[2].<anonymous>.<anonymous>.w1')
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:440:3: warning: implicit declaration of function 'gSPMatrix'; did you mean 'gSPObjMatrix'? [-Wimplicit-function-declaration]
+  440 |   gSPMatrix(gfx++, _Matrix_to_Mtx_new(graph), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+      |   ^~~~~~~~~
+      |   gSPObjMatrix
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:441:3: warning: implicit declaration of function 'gSPDisplayList'; did you mean 'gsEndDisplayList'? [-Wimplicit-function-declaration]
+  441 |   gSPDisplayList(gfx++, init_disp);
+      |   ^~~~~~~~~~~~~~
+      |   gsEndDisplayList
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c: In function 'aAL_back_draw':
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:452:5: warning: implicit declaration of function 'gsSPTexture'; did you mean 'GXSetZTexture'? [-Wimplicit-function-declaration]
+  452 |     gsSPTexture(0, 0, 0, 0, G_ON),
+      |     ^~~~~~~~~~~
+      |     GXSetZTexture
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:452:5: error: initializer element is not constant
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:452:5: note: (near initialization for 'init_disp[0].<anonymous>.<anonymous>.w0')
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:453:5: warning: braces around scalar initializer
+  453 |     gsSPLoadGeometryMode(G_CULL_BACK),
+      |     ^~~~~~~~~~~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:453:5: note: (near initialization for 'init_disp[0].<anonymous>.<anonymous>.w1')
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:174:87: warning: excess elements in scalar initializer
+  174 | #define gsSPLoadGeometryMode(mode) {(unsigned int)(0xD7000000 | ((mode) & 0xFFFFFF)), 0}
+      |                                                                                       ^
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:453:5: note: in expansion of macro 'gsSPLoadGeometryMode'
+  453 |     gsSPLoadGeometryMode(G_CULL_BACK),
+      |     ^~~~~~~~~~~~~~~~~~~~
+/workspace/vita/platform/ac_vita_platform_minimal.h:174:87: note: (near initialization for 'init_disp[0].<anonymous>.<anonymous>.w1')
+  174 | #define gsSPLoadGeometryMode(mode) {(unsigned int)(0xD7000000 | ((mode) & 0xFFFFFF)), 0}
+      |                                                                                       ^
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:453:5: note: in expansion of macro 'gsSPLoadGeometryMode'
+  453 |     gsSPLoadGeometryMode(G_CULL_BACK),
+      |     ^~~~~~~~~~~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:455:5: error: initializer element is not constant
+  455 |     gsDPSetCombineMode(G_CC_BACK, G_CC_BACK),
+      |     ^~~~~~~~~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:455:5: note: (near initialization for 'init_disp[2].<anonymous>.<anonymous>.w0')
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:456:5: error: initializer element is not constant
+  456 |     gsSPEndDisplayList()
+      |     ^~~~~~~~~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:456:5: note: (near initialization for 'init_disp[2].<anonymous>.<anonymous>.w1')
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c: In function 'aAL_title_draw':
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:570:5: error: initializer element is not constant
+  570 |     gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
+      |     ^~~~~~~~~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:570:5: note: (near initialization for 'init_disp[1].<anonymous>.<anonymous>.w0')
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:571:5: warning: braces around scalar initializer
+  571 |     gsSPLoadGeometryMode(G_CULL_BACK),
+      |     ^~~~~~~~~~~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:571:5: note: (near initialization for 'init_disp[1].<anonymous>.<anonymous>.w1')
+In file included from <command-line>:
+/workspace/vita/platform/ac_vita_platform_minimal.h:174:87: warning: excess elements in scalar initializer
+  174 | #define gsSPLoadGeometryMode(mode) {(unsigned int)(0xD7000000 | ((mode) & 0xFFFFFF)), 0}
+      |                                                                                       ^
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:571:5: note: in expansion of macro 'gsSPLoadGeometryMode'
+  571 |     gsSPLoadGeometryMode(G_CULL_BACK),
+      |     ^~~~~~~~~~~~~~~~~~~~
+/workspace/vita/platform/ac_vita_platform_minimal.h:174:87: note: (near initialization for 'init_disp[1].<anonymous>.<anonymous>.w1')
+  174 | #define gsSPLoadGeometryMode(mode) {(unsigned int)(0xD7000000 | ((mode) & 0xFFFFFF)), 0}
+      |                                                                                       ^
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:571:5: note: in expansion of macro 'gsSPLoadGeometryMode'
+  571 |     gsSPLoadGeometryMode(G_CULL_BACK),
+      |     ^~~~~~~~~~~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:572:5: error: initializer element is not constant
+  572 |     gsSPTexture(0, 0, 0, 0, G_ON),
+      |     ^~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:572:5: note: (near initialization for 'init_disp[2].<anonymous>.<anonymous>.w0')
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:573:5: error: initializer element is not constant
+  573 |     gsSPEndDisplayList()
+      |     ^~~~~~~~~~~~~~~~~~
+/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c:573:5: note: (near initialization for 'init_disp[2].<anonymous>.<anonymous>.w1')
+make[2]: *** [CMakeFiles/AnimalCrossingVita.dir/build.make:244: CMakeFiles/AnimalCrossingVita.dir/workspace/ac-decomp-upstream/src/actor/ac_animal_logo.c.obj] Error 1
+make[1]: *** [CMakeFiles/Makefile2:89: CMakeFiles/AnimalCrossingVita.dir/all] Error 2
+make: *** [Makefile:91: all] Error 2
