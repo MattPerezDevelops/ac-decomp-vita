@@ -1,5 +1,8 @@
 #include "m_rcp.h"
 
+#ifdef TARGET_PC
+#include <stdio.h>
+#endif
 #include "gfxalloc.h"
 #include "libu64/u64types.h"
 #include "jsyswrap.h"
@@ -378,6 +381,12 @@ extern Gfx* two_tex_scroll_dolphin(GRAPH* graph, int tile1, int x1, int y1, int 
 extern void DisplayList_initialize(GRAPH* graph, u8 clear_r, u8 clear_g, u8 clear_b, GAME* game) {
     OPEN_DISP(graph);
 
+#ifdef TARGET_PC
+    printf("[DL_INIT] RSP_RDP_clear_data full=%p trunc=0x%08X\n",
+           (void*)RSP_RDP_clear_data, (unsigned)(uintptr_t)RSP_RDP_clear_data);
+    printf("[DL_INIT] NOW_POLY_OPA_DISP=%p (poly_opa buffer)\n", (void*)NOW_POLY_OPA_DISP);
+    fflush(stdout);
+#endif
     gSPDisplayList(NOW_POLY_OPA_DISP++, RSP_RDP_clear_data);
     gSPDisplayList(NOW_POLY_XLU_DISP++, RSP_RDP_clear_data);
     gSPDisplayList(NOW_OVERLAY_DISP++, RSP_RDP_clear_data);

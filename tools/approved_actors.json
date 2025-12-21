@@ -1,0 +1,83 @@
+{
+  "description": "Approved actors for PC port. Add actors here as they are ported.",
+  "note": "Actors must be in CMakeLists.txt AND have all data dependencies satisfied.",
+  "approved_actors": [
+    {
+      "id": 0,
+      "profile_name": "mAc_PROFILE_PLAYER",
+      "profile_symbol": "Player_Profile",
+      "header": "m_player_call.h",
+      "macro_name": "Player"
+    },
+    {
+      "id": 3,
+      "profile_name": "mAc_PROFILE_FIELDM_DRAW",
+      "profile_symbol": "Fieldm_Draw_Profile",
+      "header": "ac_fieldm_draw.h",
+      "macro_name": "Fieldm_Draw"
+    },
+    {
+      "id": 4,
+      "profile_name": "mAc_PROFILE_FIELD_DRAW",
+      "profile_symbol": "Field_Draw_Profile",
+      "header": "ac_field_draw.h",
+      "macro_name": "Field_Draw"
+    },
+    {
+      "id": 119,
+      "profile_name": "mAc_PROFILE_EFFECTBG",
+      "profile_symbol": "Effectbg_Profile",
+      "header": "ac_effectbg.h",
+      "macro_name": "Effectbg"
+    },
+    {
+      "id": 171,
+      "profile_name": "mAc_PROFILE_ANIMAL_LOGO",
+      "profile_symbol": "Animal_Logo_Profile",
+      "header": "ac_animal_logo.h",
+      "macro_name": "Animal_Logo"
+    },
+    {
+      "id": 49,
+      "profile_name": "mAc_PROFILE_BIRTH_CONTROL",
+      "profile_symbol": "Birth_Control_Profile",
+      "header": "ac_birth_control.h",
+      "macro_name": "Birth_Control"
+    },
+    {
+      "id": 55,
+      "profile_name": "mAc_PROFILE_WEATHER",
+      "profile_symbol": "Weather_Profile",
+      "header": "ac_weather.h",
+      "macro_name": "Weather"
+    },
+    {
+      "id": 69,
+      "profile_name": "mAc_PROFILE_STRUCTURE",
+      "profile_symbol": "Structure_Profile",
+      "header": "ac_structure.h",
+      "macro_name": "Structure"
+    },
+    {
+      "id": 43,
+      "profile_name": "mAc_PROFILE_MYHOUSE",
+      "profile_symbol": "MyHouse_Profile",
+      "header": "ac_my_house.h",
+      "macro_name": "MyHouse"
+    },
+    {
+      "id": 166,
+      "profile_name": "mAc_PROFILE_DUMP",
+      "profile_symbol": "Dump_Profile",
+      "header": "ac_dump.h",
+      "macro_name": "Dump"
+    },
+    {
+      "id": 180,
+      "profile_name": "mAc_PROFILE_DUMMY",
+      "profile_symbol": "Dummy_Profile",
+      "header": "ac_dummy.h",
+      "macro_name": "Dummy"
+    }
+  ]
+}

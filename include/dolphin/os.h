@@ -1,6 +1,11 @@
 #ifndef _DOLPHIN_OS
 #define _DOLPHIN_OS
 
+#ifdef TARGET_PC
+/* PC port - use PC-specific OS header */
+#include "pc/dolphin/os.h"
+#else
+/* GameCube build - use original headers */
 #include "types.h"
 #include "dolphin/os/OSAlloc.h"
 #include "dolphin/os/OSArena.h"
@@ -161,4 +166,6 @@ void *OSUncachedToCached(void *ucaddr);
 #ifdef __cplusplus
 }
 #endif
-#endif
+
+#endif /* !TARGET_PC */
+#endif /* _DOLPHIN_OS */

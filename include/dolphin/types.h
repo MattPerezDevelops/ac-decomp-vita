@@ -1,6 +1,11 @@
 #ifndef _DOLPHIN_TYPES_H_
 #define _DOLPHIN_TYPES_H_
 
+#ifdef TARGET_PC
+/* PC port - use PC types instead */
+#include "pc/types.h"
+#else
+/* GameCube build - use original types */
 typedef signed   char          s8;
 typedef unsigned char          u8;
 typedef signed   short int     s16;
@@ -50,4 +55,5 @@ typedef int BOOL;
 
 #include "cmath.h"
 
-#endif
+#endif /* !TARGET_PC */
+#endif /* _DOLPHIN_TYPES_H_ */

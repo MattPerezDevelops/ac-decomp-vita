@@ -157,6 +157,10 @@ extern int mEv_CheckArbeit() {
 }
 
 extern int mEv_CheckFirstJob() {
+#ifdef TARGET_PC
+    /* PC port: skip intro demo to avoid actor system dependencies */
+    return FALSE;
+#else
     u32 player_no = Common_Get(player_no);
     int res = FALSE;
 
@@ -170,6 +174,7 @@ extern int mEv_CheckFirstJob() {
     }
 
     return res;
+#endif
 }
 
 extern void mEv_UnSetFirstJob() {

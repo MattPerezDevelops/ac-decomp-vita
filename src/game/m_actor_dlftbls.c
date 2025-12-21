@@ -504,8 +504,23 @@ ACTOR_DLFTBL actor_dlftbls[] = {
 
 int actor_dlftbls_num;
 
+#ifdef TARGET_PC
+#include <stdio.h>
+#include "m_actor.h"
+#endif
 extern void actor_dlftbls_init() {
   actor_dlftbls_num = 246;
+#ifdef TARGET_PC
+  printf("[actor_dlftbls_init] Verifying actor profiles (num=%d)...\n", actor_dlftbls_num);
+  printf("  [0] PLAYER profile=%p\n", (void*)actor_dlftbls[0].profile);
+  printf("  [4] FIELD_DRAW profile=%p\n", (void*)actor_dlftbls[4].profile);
+  printf("  [49] index49 profile=%p\n", (void*)actor_dlftbls[49].profile);
+  printf("  [50] index50 profile=%p\n", (void*)actor_dlftbls[50].profile);
+  printf("  [69] index69 profile=%p\n", (void*)actor_dlftbls[69].profile);
+  printf("  mAc_PROFILE_BIRTH_CONTROL=%d, mAc_PROFILE_STRUCTURE=%d\n",
+         mAc_PROFILE_BIRTH_CONTROL, mAc_PROFILE_STRUCTURE);
+  fflush(stdout);
+#endif
 }
 
 extern void actor_dlftbls_cleanup() {

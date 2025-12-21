@@ -1,5 +1,13 @@
 #include "m_play.h"
 
+#ifdef TARGET_PC
+#include <stdio.h>
+#include "scene_loader.h"
+#define PLAY_DEBUG(msg) do { printf("[play_init] %s\n", msg); fflush(stdout); } while(0)
+#else
+#define PLAY_DEBUG(msg)
+#endif
+
 #include "m_common_data.h"
 #include "libultra/libultra.h"
 #include "m_fbdemo_wipe1.h"
@@ -48,12 +56,60 @@ static u16 S_se_endcheck_timeout = 0;
 static u8 gxbuf[0x140] ATTRIBUTE_ALIGN(32);
 static u8 prbuf[(2*SCREEN_WIDTH) * (2*SCREEN_HEIGHT) * sizeof(u32)] ATTRIBUTE_ALIGN(32); // 0x12C000
 
+#ifdef TARGET_PC
+/**
+ * PC port: Update camera to follow player position each frame.
+ * Called before setupViewer() to update view->eye and view->center.
+ */
+static void pc_update_camera_follow(GAME_PLAY* play) {
+    PLAYER_ACTOR* player = GET_PLAYER_ACTOR(play);
+    static int cam_log = 0;
+
+    if (player != NULL) {
+        f32 px = player->actor_class.world.position.x;
+        f32 py = player->actor_class.world.position.y;
+        f32 pz = player->actor_class.world.position.z;
+
+        /* Camera looks at player position */
+        play->view.center.x = px;
+        play->view.center.y = py;
+        play->view.center.z = pz;
+
+        /* Camera positioned behind and above player.
+         * Using fixed offset - smooth follow can be added later. */
+        play->view.eye.x = px;
+        play->view.eye.y = py + 6000.0f;   /* Height above player */
+        play->view.eye.z = pz - 7000.0f;   /* Behind player (looking +Z) */
+
+        /* Mark view as needing update */
+        play->view.flag |= VIEW_UPDATE_LOOKAT;
+
+        if (cam_log < 5) {
+            printf("[CAMERA] Follow player at (%.0f,%.0f,%.0f) -> eye(%.0f,%.0f,%.0f)\n",
+                   px, py, pz,
+                   play->view.eye.x, play->view.eye.y, play->view.eye.z);
+            fflush(stdout);
+            cam_log++;
+        }
+    }
+}
+#endif
+
 static void Game_play_fbdemo_wipe_init(GAME_PLAY* play);
 static void Gameplay_Scene_Read(GAME_PLAY* play, s16 scene_no);
 
 static void Game_play_Reset_destiny() {
     lbRTC_time_c* rtc_time = Common_GetPointer(time.rtc_time);
-    mPr_destiny_c* destiny = &Common_Get(now_private)->destiny;
+    mPr_destiny_c* destiny;
+
+#ifdef TARGET_PC
+    /* PC port: now_private may not be initialized yet */
+    if (Common_Get(now_private) == NULL) {
+        return;
+    }
+#endif
+
+    destiny = &Common_Get(now_private)->destiny;
 
     if (destiny->type == mPr_DESTINY_NORMAL) {
         return;
@@ -79,6 +135,12 @@ static void event_title_flag_off() {
 }
 
 static void Game_play_camera_proc(GAME_PLAY* play) {
+#ifdef TARGET_PC
+    /* PC port: Skip camera if no player actor */
+    if (get_player_actor_withoutCheck(play) == NULL) {
+        return;
+    }
+#endif
     Camera2_ClearActorTalking_Cull(play);
     Camera2_process(play);
 }
@@ -409,39 +471,62 @@ extern void play_init(GAME* game) {
     u32 aligned;
     u32 size;
 
+    PLAY_DEBUG("Starting");
     game_resize_hyral(game, -Game_play_HYRAL_SIZE); // reserve bytes from gamealloc
+    PLAY_DEBUG("game_resize_hyral done");
     Common_Set(rhythym_updated, 0);
+    PLAY_DEBUG("Common_Set(rhythym_updated) done");
 
     mFI_ChangeClimate_ForEventNotice();
+    PLAY_DEBUG("mFI_ChangeClimate_ForEventNotice done");
     mTM_time_init();
+    PLAY_DEBUG("mTM_time_init done");
     sAdo_Set_ongenpos_refuse_fg(0);
+    PLAY_DEBUG("sAdo_Set_ongenpos_refuse_fg done");
     event_title_flag_on();
+    PLAY_DEBUG("event_title_flag_on done");
     mTD_rtc_set();
+    PLAY_DEBUG("mTD_rtc_set done");
     mTM_set_season();
+    PLAY_DEBUG("mTM_set_season done");
     mPlib_Clear_controller_data_for_title_demo();
+    PLAY_DEBUG("mPlib_Clear_controller_data_for_title_demo done");
 
     mSM_submenu_ovlptr_init(play);
+    PLAY_DEBUG("mSM_submenu_ovlptr_init done");
     mDemo_Init(play);
+    PLAY_DEBUG("mDemo_Init done");
     mEv_init(&play->event);
+    PLAY_DEBUG("mEv_init done");
 
     initView(&play->view, graph);
+    PLAY_DEBUG("initView done");
     Init_Camera2(play);
+    PLAY_DEBUG("Init_Camera2 done");
     CollisionCheck_ct(game, &play->collision_check);
+    PLAY_DEBUG("CollisionCheck_ct done");
 
     mCoBG_InitMoveBgData();
+    PLAY_DEBUG("mCoBG_InitMoveBgData done");
     mCoBG_InitBlockBgCheckMode();
+    PLAY_DEBUG("mCoBG_InitBlockBgCheckMode done");
     mCoBG_InitDecalCircle();
+    PLAY_DEBUG("mCoBG_InitDecalCircle done");
 
     play->submenu_ground_idx = -1;
 
+    PLAY_DEBUG("Calling Gameplay_Scene_Read");
     Gameplay_Scene_Read(play, Save_Get(scene_no));
+    PLAY_DEBUG("Gameplay_Scene_Read done");
 
     mSM_submenu_ct(&play->submenu);
     play->submenu.mode = mSM_MODE_IDLE;
+    PLAY_DEBUG("mSM_submenu_ct done");
 
     PreRender_init(&play->prerender);
     PreRender_setup_savebuf(&play->prerender, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, NULL, NULL, NULL);
     PreRender_setup_renderbuf(&play->prerender, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, NULL, NULL);
+    PLAY_DEBUG("PreRender setup done");
 
     play->fb_mode = FBDEMO_MODE_NONE;
     type = WIPE_TYPE_TRIFORCE;
@@ -457,7 +542,9 @@ extern void play_init(GAME* game) {
     play->fb_wipe_type = type;
 
     Pause_ct(&play->pause);
+    PLAY_DEBUG("Pause_ct done");
     new_Matrix(game);
+    PLAY_DEBUG("new_Matrix done");
 
     fade = &play->color_fade;
 
@@ -467,6 +554,7 @@ extern void play_init(GAME* game) {
     fbdemo_fade_settype(fade, 7);
     fbdemo_fade_setcolor_rgba8888(fade, 0xA0A0A0FF);
     fbdemo_fade_startup(fade);
+    PLAY_DEBUG("fbdemo_fade setup done");
 
     play->fade_color_value.rgba8888 = 0;
 
@@ -474,27 +562,43 @@ extern void play_init(GAME* game) {
     alloc = (u32)THA_alloc16(&game->tha, freebytes);
     aligned = ALIGN_NEXT(alloc, 16);
     size = aligned - alloc;
+    PLAY_DEBUG("Calling zelda_InitArena");
 
     zelda_InitArena((void*)aligned, freebytes - size);
+    PLAY_DEBUG("zelda_InitArena done");
 
     if (my_malloc_current == NULL) {
         my_malloc_current = &my_malloc_func;
     }
 
+    PLAY_DEBUG("Calling mFM_FieldInit");
     mFM_FieldInit(play);
+    PLAY_DEBUG("mFM_FieldInit done");
     VR_Box_ct(play);
+    PLAY_DEBUG("VR_Box_ct done");
     mMmd_MakeMuseumDisplayData();
+    PLAY_DEBUG("mMmd_MakeMuseumDisplayData done");
     Actor_info_ct(game, &play->actor_info, play->player_data);
+    PLAY_DEBUG("Actor_info_ct done");
     play->draw_chk_proc = none_proc1;
     mMsg_ct(game);
+    PLAY_DEBUG("mMsg_ct done");
     mEv_2nd_init(&play->event);
+    PLAY_DEBUG("mEv_2nd_init done");
     mTD_player_keydata_init(play);
+    PLAY_DEBUG("mTD_player_keydata_init done");
     Balloon_init(play);
+    PLAY_DEBUG("Balloon_init done");
     mNtc_set_auto_nwrite_data();
+    PLAY_DEBUG("mNtc_set_auto_nwrite_data done");
     banti_ct();
+    PLAY_DEBUG("banti_ct done");
     watch_my_step_ct();
+    PLAY_DEBUG("watch_my_step_ct done");
     event_title_flag_off();
+    PLAY_DEBUG("event_title_flag_off done");
     mEA_GetCardDLProgram();
+    PLAY_DEBUG("Completed");
 }
 
 static void Game_play_move_fbdemo_not_move(GAME* game) {
@@ -797,6 +901,9 @@ static void Game_play_draw(GAME_PLAY* play) {
 
     if ((GETREG(HREG, 80) != 10) || (GETREG(HREG, 82) != 0)) {
         setupFog(play, graph);
+#ifdef TARGET_PC
+        pc_update_camera_follow(play);
+#endif
         setupViewer(play);
         setupViewMatrix(play, graph, graph);
 
@@ -980,7 +1087,27 @@ static void Gameplay_Scene_Read(GAME_PLAY* play, s16 idx) {
     current->unk13 = 0;
     play->scene_data_status = current;
     play->scene_id = idx;
+
+#ifdef TARGET_PC
+    /* PC port: Use runtime-built scene data with proper 64-bit pointers.
+     * The original scene data files use (u32)ptr casts which truncate on 64-bit.
+     * scene_loader_get() returns NULL for unimplemented scenes, in which case
+     * we fall back to the static data (which may be broken but at least won't crash).
+     */
+    {
+        Scene_Word_u* pc_scene_data = scene_loader_get(idx);
+        if (pc_scene_data != NULL) {
+            printf("[Gameplay_Scene_Read] Using PC scene loader for scene %d\n", idx);
+            play->current_scene_data = pc_scene_data;
+        } else {
+            printf("[Gameplay_Scene_Read] Scene %d not in PC loader, using static data\n", idx);
+            play->current_scene_data = scene_word_data[idx];
+        }
+    }
+#else
     play->current_scene_data = scene_word_data[idx];
+#endif
+
     current->unk13 = 0;
     Gameplay_Scene_Init(play);
     sAdo_RoomType(mPl_SceneNo2SoundRoomType(Save_Get(scene_no)));

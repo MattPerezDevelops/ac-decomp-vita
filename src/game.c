@@ -1,5 +1,9 @@
 #include "game.h"
 
+#ifdef TARGET_PC
+#include <stdio.h>
+#endif
+
 #include "m_debug.h"
 #include "zurumode.h"
 #include "libforest/gbi_extensions.h"
@@ -200,8 +204,15 @@ extern void game_resize_hyral(GAME* this, int size) {
 }
 
 extern void game_ct(GAME* this, void (*init)(GAME*), GRAPH* graph) {
+#ifdef TARGET_PC
+    printf("[game_ct] Starting, this=%p, init=%p, graph=%p\n", (void*)this, (void*)init, (void*)graph);
+    fflush(stdout);
+#endif
     gamePT = this;
     graph->need_viupdate = TRUE;
+#ifdef TARGET_PC
+    printf("[game_ct] Calling mCon_ct()\n"); fflush(stdout);
+#endif
     mCon_ct();
     this->graph = graph;
     this->frame_counter = 0;
@@ -210,16 +221,34 @@ extern void game_ct(GAME* this, void (*init)(GAME*), GRAPH* graph) {
     this->doing = TRUE;
     this->pad_initialized = TRUE;
     GAME_NEXT_GAME_NULL(this);
+#ifdef TARGET_PC
+    printf("[game_ct] Calling gamealloc_init()\n"); fflush(stdout);
+#endif
     gamealloc_init(&this->gamealloc);
+#ifdef TARGET_PC
+    printf("[game_ct] Calling game_init_hyral(%zu)\n", (size_t)GAME_HYRAL_SIZE); fflush(stdout);
+#endif
     game_init_hyral(this, GAME_HYRAL_SIZE);
+#ifdef TARGET_PC
+    printf("[game_ct] Calling SetGameFrame()\n"); fflush(stdout);
+#endif
     SetGameFrame(GAME_FRAME);
     __gfxprint_default_flags |= GFXPRINT_FLAG_HIGHRES;
+#ifdef TARGET_PC
+    printf("[game_ct] Calling init() function\n"); fflush(stdout);
+#endif
     init(this);
+#ifdef TARGET_PC
+    printf("[game_ct] init() returned, calling mBGM_init()\n"); fflush(stdout);
+#endif
     mBGM_init();
 #if VERSION < VER_GAFU01_00
     GBAInit();
 #endif
     mVibctl_init();
+#ifdef TARGET_PC
+    printf("[game_ct] Completed\n"); fflush(stdout);
+#endif
 }
 
 extern void game_dt(GAME* this) {
@@ -245,6 +274,12 @@ MATCH_FORCESTRIP extern size_t game_get_next_game_class_size(GAME* this) {
 }
 
 extern int game_is_doing(GAME* this) {
+#ifdef TARGET_PC
+    extern int window_should_close(void);
+    if (window_should_close()) {
+        return 0;  /* Force exit when window close requested */
+    }
+#endif
     return this->doing;
 }
 

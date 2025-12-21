@@ -41,7 +41,7 @@ extern int mTD_demono_get() {
 extern void mTD_player_keydata_init(GAME_PLAY* play) {
     PLAYER_ACTOR* player = get_player_actor_withoutCheck(play);
 
-    if (mEv_IsTitleDemo()) {
+    if (mEv_IsTitleDemo() && player != NULL) {
         u16 angle;
         mActor_name_t tool = get_demo_header(mEv_CheckTitleDemo() - mEv_TITLEDEMO_START1, mTD_HEADER_TOOL);
 

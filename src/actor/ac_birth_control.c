@@ -291,6 +291,17 @@ static void aBC_actor_move(ACTOR* actorx, GAME* game) {
   BIRTH_CONTROL_ACTOR* birth_control = (BIRTH_CONTROL_ACTOR*)actorx;
   GAME_PLAY* play = (GAME_PLAY*)game;
 
+#ifdef TARGET_PC
+  /* PC port: Field info system not yet ported.
+   * Birth_Control accesses g_fdinfo->born_actor and block_table.items
+   * which require the full field info system to be initialized.
+   * Skip all field-dependent logic until that system is ported.
+   */
+  (void)birth_control;
+  (void)play;
+  return;
+#endif
+
   if (Common_Get(bg_item_type) == 0) {
     birth_control->setup_actor_flag |= mFI_ActorisBorn() == TRUE;
     aBC_set_boat(birth_control, play);

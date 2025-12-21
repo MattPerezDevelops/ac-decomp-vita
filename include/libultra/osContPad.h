@@ -4,6 +4,15 @@
 #define OS_CONT_PAD
 
 #include "types.h"
+
+#ifdef TARGET_PC
+/* PC port - use PC compatibility layer which has OSContPad, OSContStatus */
+#include "pc/os_compat.h"
+
+#define MAXCONTROLLERS 4
+
+#else
+/* GameCube/N64 build */
 #include "libultra/os_pfs.h"
 #include "dolphin/os/OSMessage.h"
 
@@ -83,4 +92,5 @@ extern void osContGetReadDataEx(OSContPadEx* pad);
 }
 #endif
 
-#endif
+#endif /* !TARGET_PC */
+#endif /* OS_CONT_PAD */

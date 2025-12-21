@@ -1,6 +1,11 @@
 #ifndef _DOLPHIN_OS_OSMESSAGE_H
 #define _DOLPHIN_OS_OSMESSAGE_H
 
+#ifdef TARGET_PC
+/* PC port - use PC-specific OS message implementation */
+#include "pc/dolphin/os/OSMessage.h"
+#else
+/* GameCube build */
 #include "types.h"
 #include "dolphin/os/OSUtil.h"
 #include "dolphin/os/OSThread.h"
@@ -48,4 +53,5 @@ BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* msgPtr, int flags);
 };
 #endif // ifdef __cplusplus
 
-#endif
+#endif /* !TARGET_PC */
+#endif /* _DOLPHIN_OS_OSMESSAGE_H */

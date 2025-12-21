@@ -21,6 +21,8 @@ extern double sin(double deg);
 extern double cos(double deg);
 extern double tan(double deg);
 
+#ifndef TARGET_PC
+/* GameCube: provide sinf/cosf inline wrappers */
 float sinf(float);
 float cosf(float);
 
@@ -31,6 +33,8 @@ inline float sinf(float x) {
 inline float cosf(float x) {
     return (float)cos((double)x);
 }
+#endif
+/* PC: uses sinf/cosf from standard <math.h> */
 
 extern double ceil(double);
 

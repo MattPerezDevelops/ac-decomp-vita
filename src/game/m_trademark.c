@@ -1,5 +1,10 @@
 #include "m_trademark.h"
 
+#ifdef TARGET_PC
+#include <stdio.h>
+#include "sys_dynamic.h"
+#endif
+
 #include "m_scene_table.h"
 #include "m_name_table.h"
 #include "m_npc.h"
@@ -32,7 +37,12 @@
 #include "m_common_data.h"
 #include "m_play.h"
 
+#ifdef TARGET_PC
+/* Force trademark logo to render on PC - skip the "first run" shortcut */
+static int mTR_first_flag = FALSE;
+#else
 static int mTR_first_flag = TRUE;
+#endif
 
 static Door_data_c demo_1_door_data = { SCENE_TITLE_DEMO, 4, FALSE, 0, { 2180, 200, 824 }, EMPTY_NO, 3, { 0, 0, 0 } };
 
@@ -144,7 +154,13 @@ static void trademark_goto_demo_scene(GAME_TRADEMARK* trademark) {
         Common_Set(transition.wipe_type, WIPE_TYPE_FADE_BLACK);
     }
 
+#ifdef TARGET_PC
+    /* PC Port: Boot directly to village to test structure rendering */
+    Save_Set(scene_no, SCENE_FG);
+    printf("[TRADEMARK] PC Port: Skipping to SCENE_FG (village) for testing\n");
+#else
     Save_Set(scene_no, SCENE_TITLE_DEMO);
+#endif
     mTM_set_season();
     Common_Set(submenu_disabled, TRUE);
     GAME_GOTO_NEXT((GAME*)trademark, play, PLAY);
@@ -155,7 +171,11 @@ static void nintendo_logo_move(GAME_TRADEMARK* trademark) {
     int alpha2;
     if (trademark->stage == 2) {
         alpha2 = trademark->alpha2;
+#ifdef TARGET_PC
+        alpha2 += 0x4000;  /* PC Port: Speed up fade */
+#else
         alpha2 += 0x880;
+#endif
         if (alpha2 >= 0xFF00) {
             trademark->stage = 4;
             alpha2 = 0xFF00;
@@ -251,11 +271,39 @@ static void trademark_move(GAME_TRADEMARK* trademark) {
 static void trademark_draw(GAME_TRADEMARK* trademark) {
     GRAPH* g = trademark->game.graph;
     Gfx* gfx;
+#ifdef TARGET_PC
+    static int trade_frame = 0;
+    trade_frame++;
+    if (trade_frame <= 10) {
+        printf("[TRADE_DRAW] frame=%d stage=%d graph=%p\n",
+               trade_frame, trademark->stage, (void*)g);
+        printf("[TRADE_DRAW] BEFORE: poly_opa head=%p buf=%p\n",
+               (void*)g->polygon_opaque_thaga.thaGfx.head_p,
+               (void*)g->polygon_opaque_thaga.thaGfx.buf_p);
+        fflush(stdout);
+    }
+#endif
 
     OPEN_DISP(g);
 
     gSPSegment(NOW_POLY_OPA_DISP++, 0, 0);
+#ifdef TARGET_PC
+    if (trade_frame <= 10) {
+        printf("[TRADE_DRAW] AFTER gSPSegment: poly_opa[0]=(0x%08X,0x%08X) head=%p\n",
+               sys_dynamic.poly_opa[0].words.w0, sys_dynamic.poly_opa[0].words.w1,
+               (void*)g->polygon_opaque_thaga.thaGfx.head_p);
+        fflush(stdout);
+    }
+#endif
     DisplayList_initialize(g, 0, 0, 0, NULL);
+#ifdef TARGET_PC
+    if (trade_frame <= 10) {
+        printf("[TRADE_DRAW] AFTER DisplayList_initialize: poly_opa[0]=(0x%08X,0x%08X) head=%p\n",
+               sys_dynamic.poly_opa[0].words.w0, sys_dynamic.poly_opa[0].words.w1,
+               (void*)g->polygon_opaque_thaga.thaGfx.head_p);
+        fflush(stdout);
+    }
+#endif
     if (mTR_first_flag == FALSE) {
         if (trademark->stage >= 2) {
             nintendo_logo_draw(trademark);
@@ -272,6 +320,16 @@ static void trademark_draw(GAME_TRADEMARK* trademark) {
 static void trademark_main(GAME* game) {
     GAME_TRADEMARK* trademark = (GAME_TRADEMARK*)game;
     GRAPH* g;
+#ifdef TARGET_PC
+    static int tm_frame = 0;
+    tm_frame++;
+    if (tm_frame <= 5 || tm_frame % 30 == 0 || trademark->stage != 4) {
+        printf("[TM_MAIN] frame=%d stage=%d logo_timer=%d move_timer=%d alpha=0x%X alpha2=0x%X\n",
+               tm_frame, trademark->stage, trademark->logo_timer, trademark->move_timer,
+               trademark->alpha, trademark->alpha2);
+        fflush(stdout);
+    }
+#endif
 
     fqrand(); /* increment qrand seed every frame */
     trademark_cancel(trademark);
@@ -318,8 +376,14 @@ extern void trademark_init(GAME* game) {
     new_Matrix(game);
     trademark->alpha = 0xFF00;
     trademark->alpha2 = 0;
+#ifdef TARGET_PC
+    /* PC Port: Show logo for a reasonable time (60 frames = ~1 second) */
+    trademark->logo_timer = 120;  /* Logo display time - 2 seconds */
+    trademark->move_timer = 30;   /* Initial delay before logo appears */
+#else
     trademark->logo_timer = 60;
     trademark->move_timer = 16;
+#endif
     trademark->unused_254 = 0;
     trademark->unused_210 = 0;
     trademark->stage = 0;

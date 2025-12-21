@@ -1,6 +1,12 @@
 #ifndef OS_THREAD_H
 #define OS_THREAD_H
 
+#ifdef TARGET_PC
+/* PC port - use PC thread implementation */
+#include "pc/os_compat.h"
+#else
+/* GameCube build */
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -132,4 +138,5 @@ enum OS_THREAD_STATE
 }
 #endif
 
-#endif // DOLPHIN_OSTHREAD_H
+#endif /* !TARGET_PC */
+#endif /* OS_THREAD_H */

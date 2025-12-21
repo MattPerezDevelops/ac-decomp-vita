@@ -925,6 +925,10 @@ extern mFM_bg_sound_source_c* mFI_GetSoundSourcePBlockNum(int bx, int bz) {
     return ss;
 }
 
+#ifdef TARGET_PC
+extern void* test_terrain_get_display_list(int bx, int bz);
+#endif
+
 extern Gfx* mFI_GetBGDisplayListRom(int bx, int bz) {
     Gfx* gfx;
     int num = mFI_GetBlockNum(bx, bz);
@@ -933,6 +937,22 @@ extern Gfx* mFI_GetBGDisplayListRom(int bx, int bz) {
         gfx = NULL;
     } else {
         gfx = g_fdinfo->block_info[num].bg_info.opaque_gfx;
+#ifdef TARGET_PC
+        /* On PC, terrain pointers are garbage (32-bit truncated).
+         * Fall back to test terrain until real pointer recovery is implemented. */
+        static int bg_debug = 0;
+        if (bg_debug < 20) {
+            printf("[mFI_GetBGDisplayListRom] bx=%d bz=%d gfx=%p (0x%lX)\n",
+                   bx, bz, (void*)gfx, (uintptr_t)gfx);
+        }
+        if (gfx == NULL || ((uintptr_t)gfx < 0x100000)) {
+            gfx = (Gfx*)test_terrain_get_display_list(bx, bz);
+            if (bg_debug < 20) {
+                printf("  -> fallback to test_terrain: %p\n", (void*)gfx);
+                bg_debug++;
+            }
+        }
+#endif
     }
 
     return gfx;
@@ -946,6 +966,12 @@ extern Gfx* mFI_GetBGDisplayListRom_XLU(int bx, int bz) {
         gfx = NULL;
     } else {
         gfx = g_fdinfo->block_info[num].bg_info.translucent_gfx;
+#ifdef TARGET_PC
+        /* On PC, terrain pointers are garbage - return NULL for XLU (no translucent fallback needed) */
+        if (gfx != NULL && ((uintptr_t)gfx < 0x100000)) {
+            gfx = NULL;
+        }
+#endif
     }
 
     return gfx;

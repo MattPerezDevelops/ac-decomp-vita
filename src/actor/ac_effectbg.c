@@ -909,6 +909,14 @@ static void EffectBG_object_move(EffectBg_c* efbg, GAME* game) {
 }
 
 static void Effectbg_actor_move(ACTOR* actorx, GAME* game) {
+#ifdef TARGET_PC
+    /* PC port: Skip move for same reason as draw - keyframe animation
+     * data not yet ported. Effects won't activate on PC anyway. */
+    (void)actorx;
+    (void)game;
+    return;
+#endif
+
     EffectBg_c* efbg = efbg_start_p;
     int i;
 
@@ -1056,6 +1064,18 @@ static void EffectBG_object_draw(EffectBg_c* efbg, GAME* game) {
 }
 
 static void Effectbg_actor_draw(ACTOR* actorx, GAME* game) {
+#ifdef TARGET_PC
+    /* PC port: Tree animation data not yet ported.
+     * Effectbg draws tree shaking/cutting effects using keyframe animation
+     * data (cKF_ba_r_ef_*) which are stubbed as zeros on PC.
+     * Skip drawing until proper animation data is loaded.
+     * Effects are purely visual - the game loop doesn't depend on them.
+     */
+    (void)actorx;
+    (void)game;
+    return;
+#endif
+
     EFFECTBG_ACTOR* effectbg_actor = (EFFECTBG_ACTOR*)actorx;
     EffectBg_c* efbg;
     int i;

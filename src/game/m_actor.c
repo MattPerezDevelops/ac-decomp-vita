@@ -1,5 +1,12 @@
 #include "m_actor.h"
 
+#ifdef TARGET_PC
+#include <stdio.h>
+#define ACTOR_DEBUG(msg) do { printf("[Actor_info_ct] %s\n", msg); fflush(stdout); } while(0)
+#else
+#define ACTOR_DEBUG(msg)
+#endif
+
 #include "m_play.h"
 #include "m_player_lib.h"
 #include "m_name_table.h"
@@ -119,9 +126,16 @@ static void Actor_ct(ACTOR* actor, GAME* game) {
     Object_Bank_c* bank;
 
     exchange = &play->object_exchange;
+#ifdef TARGET_PC
+    /* PC port: bounds check for data_bank_id to prevent crashes */
+    if (actor->data_bank_id >= 0 && actor->data_bank_id < mSc_OBJECT_BANK_NUM) {
+        bank = &exchange->banks[actor->data_bank_id];
+        bank->num_exist++;
+    }
+#else
     bank = &exchange->banks[actor->data_bank_id];
-
     bank->num_exist++;
+#endif
     if (actor->part == ACTOR_PART_NPC) {
         NPC_ACTOR* npc_actor = (NPC_ACTOR*)actor;
         aNPC_draw_data_c draw_data;
@@ -314,11 +328,15 @@ extern void Actor_info_ct(GAME* game, Actor_info* actor_info, Actor_data* player
     ACTOR_DLFTBL* dlftbl;
     int i;
 
+    ACTOR_DEBUG("Starting");
     bzero(actor_info, sizeof(Actor_info));
+    ACTOR_DEBUG("bzero done");
     actor_dlftbls_init();
+    ACTOR_DEBUG("actor_dlftbls_init done");
 
     Matrix_copy_MtxF(&play->billboard_matrix, &MtxF_clear);
     Matrix_copy_MtxF(&play->projection_matrix, &MtxF_clear);
+    ACTOR_DEBUG("Matrix_copy_MtxF done");
 
     /* Reset the actor dlf table info */
     dlftbl = actor_dlftbls;
@@ -327,11 +345,134 @@ extern void Actor_info_ct(GAME* game, Actor_info* actor_info, Actor_data* player
         dlftbl->num_actors = 0;
         dlftbl++;
     }
+    ACTOR_DEBUG("dlftbl loop done");
 
     if (mEv_CheckFirstJob() == TRUE) {
         Common_Set(demo_profiles[0], mAc_PROFILE_INTRO_DEMO); // force intro demo to spawn
     }
+    ACTOR_DEBUG("mEv_CheckFirstJob done");
 
+#ifdef TARGET_PC
+    /* PC port: Enable minimal actor spawning for testing */
+    ACTOR_DEBUG("PC port actor spawning enabled");
+    (void)player_data;  /* Suppress unused warning for now */
+
+    /* Test: Spawn DUMMY actor at center of field */
+    {
+        ACTOR* dummy_actor = Actor_info_make_actor(actor_info, game, mAc_PROFILE_DUMMY,
+                                                    320.0f, 0.0f, 240.0f,  /* x, y, z position */
+                                                    0, 0, 0,               /* rotations */
+                                                    -1, -1, -1,            /* block/list indices */
+                                                    EMPTY_NO, -1, -1, -1); /* name, arg, npc_info, bank */
+        if (dummy_actor != NULL) {
+            ACTOR_DEBUG("DUMMY actor spawned successfully!");
+            printf("[Actor_info_ct] DUMMY actor at pos (%.1f, %.1f, %.1f)\n",
+                   dummy_actor->world.position.x,
+                   dummy_actor->world.position.y,
+                   dummy_actor->world.position.z);
+        } else {
+            ACTOR_DEBUG("DUMMY actor spawn FAILED!");
+        }
+    }
+
+    /* Test: Spawn Player actor */
+    {
+        extern void* g_player_actor_ptr;  /* from linker_stubs.c */
+        printf("[Actor_info_ct] Spawning Player actor...\n"); fflush(stdout);
+        ACTOR* player_test = Actor_info_make_actor(actor_info, game, mAc_PROFILE_PLAYER,
+                                                    5120.0f, 0.0f, 5120.0f,  /* camera target position */
+                                                    0, 0, 0,               /* rotations */
+                                                    -1, -1, -1,            /* block/list indices */
+                                                    EMPTY_NO, -1, -1, -1); /* name, arg, npc_info, bank */
+        if (player_test != NULL) {
+            g_player_actor_ptr = (void*)player_test;  /* Set global for get_player_actor_withoutCheck */
+            printf("[Actor_info_ct] Player actor spawned at (%.1f, %.1f, %.1f)!\n",
+                   player_test->world.position.x,
+                   player_test->world.position.y,
+                   player_test->world.position.z);
+            printf("[Actor_info_ct] g_player_actor_ptr = %p\n", g_player_actor_ptr);
+            fflush(stdout);
+        } else {
+            printf("[Actor_info_ct] Player actor spawn FAILED!\n");
+            fflush(stdout);
+        }
+    }
+
+    /* Test: Spawn Field_Draw actor for terrain rendering */
+    {
+        printf("[Actor_info_ct] Spawning Field_Draw actor...\n"); fflush(stdout);
+        ACTOR* field_draw_actor = Actor_info_make_actor(actor_info, game, mAc_PROFILE_FIELD_DRAW,
+                                                         0.0f, 0.0f, 0.0f,   /* position at origin */
+                                                         0, 0, 0,            /* rotations */
+                                                         -1, -1, -1,         /* block/list indices */
+                                                         EMPTY_NO, -1, -1, -1); /* name, arg, npc_info, bank */
+        printf("[Actor_info_ct] Field_Draw make_actor returned: %p\n", (void*)field_draw_actor); fflush(stdout);
+        if (field_draw_actor != NULL) {
+            ACTOR_DEBUG("Field_Draw actor spawned successfully!");
+            printf("[Actor_info_ct] Field_Draw actor spawned for terrain rendering\n");
+            fflush(stdout);
+        } else {
+            ACTOR_DEBUG("Field_Draw actor spawn FAILED!");
+            printf("[Actor_info_ct] Field_Draw actor FAILED to spawn!\n");
+            fflush(stdout);
+        }
+    }
+
+    /* Spawn Animal_Logo actor for logo background rendering (title screen) */
+    {
+        printf("[Actor_info_ct] Spawning Animal_Logo actor...\n"); fflush(stdout);
+        ACTOR* logo_actor = Actor_info_make_actor(actor_info, game, mAc_PROFILE_ANIMAL_LOGO,
+                                                   0.0f, 0.0f, 0.0f,   /* position at origin */
+                                                   0, 0, 0,            /* rotations */
+                                                   -1, -1, -1,         /* block/list indices */
+                                                   EMPTY_NO, -1, -1, -1); /* name, arg, npc_info, bank */
+        printf("[Actor_info_ct] Animal_Logo make_actor returned: %p\n", (void*)logo_actor); fflush(stdout);
+        if (logo_actor != NULL) {
+            ACTOR_DEBUG("Animal_Logo actor spawned successfully!");
+            printf("[Actor_info_ct] Animal_Logo actor spawned for title screen\n");
+            fflush(stdout);
+        } else {
+            ACTOR_DEBUG("Animal_Logo actor spawn FAILED!");
+            printf("[Actor_info_ct] Animal_Logo actor FAILED to spawn!\n");
+            fflush(stdout);
+        }
+    }
+
+    /* PC port: Manually spawn critical control actors for SCENE_FG (village)
+     * Scene data files can't be compiled due to pointer-to-u32 cast issues in macros.
+     * Based on test_fd_npc_land.c, these are the key control actors needed:
+     */
+    {
+        /* Control actors for village scene */
+        static const s16 pc_ctrl_actors[] = {
+            mAc_PROFILE_BIRTH_CONTROL,  /* Spawns items, structures per acre */
+            mAc_PROFILE_STRUCTURE,      /* Renders houses, shops, dump, etc. */
+        };
+        const int num_ctrl_actors = sizeof(pc_ctrl_actors) / sizeof(pc_ctrl_actors[0]);
+
+        printf("[Actor_info_ct] PC port: Manually spawning %d control actors for village...\n", num_ctrl_actors);
+        fflush(stdout);
+
+        for (i = 0; i < num_ctrl_actors; i++) {
+            s16 profile = pc_ctrl_actors[i];
+            printf("[Actor_info_ct] Spawning control actor: profile=%d (%s)\n", profile,
+                   profile == mAc_PROFILE_BIRTH_CONTROL ? "Birth_Control" :
+                   profile == mAc_PROFILE_STRUCTURE ? "Structure" : "Unknown");
+            fflush(stdout);
+            ACTOR* ctrl_actor = Actor_info_make_actor(&play->actor_info, game, profile, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1,
+                                  EMPTY_NO, -1, -1, -1);
+            if (ctrl_actor != NULL) {
+                printf("[Actor_info_ct] Control actor %d spawned successfully at %p!\n", profile, (void*)ctrl_actor);
+            } else {
+                printf("[Actor_info_ct] Control actor %d FAILED to spawn!\n", profile);
+            }
+            fflush(stdout);
+        }
+    }
+
+    mSc_regist_initial_exchange_bank(play);
+    ACTOR_DEBUG("Actor_info_ct complete (PC port)");
+#else
     /* Spawn any demo actors */
     for (i = 0; i < 2; i++) {
         s16 demo_profile = Common_Get(demo_profiles[i]);
@@ -391,6 +532,7 @@ extern void Actor_info_ct(GAME* game, Actor_info* actor_info, Actor_data* player
 
         play->actor_data_num = 0;
     }
+#endif
 }
 
 extern void Actor_info_dt(Actor_info* actor_info, GAME_PLAY* play) {
@@ -412,6 +554,14 @@ extern void Actor_info_call_actor(GAME_PLAY* play, Actor_info* actor_info) {
     PLAYER_ACTOR* player_actor = get_player_actor_withoutCheck(play);
     ACTOR* actor;
     int i;
+
+#ifdef TARGET_PC
+    /* PC port: Skip actor processing if player doesn't exist */
+    if (player_actor == NULL) {
+        ACTOR_DEBUG("Skipping Actor_info_call_actor - no player actor");
+        return;
+    }
+#endif
 
     mFI_FieldMove(player_actor->actor_class.world.position);
     mBI_move(play);
@@ -692,28 +842,85 @@ extern ACTOR* Actor_info_make_actor(Actor_info* actor_info, GAME* game, s16 prof
     ACTOR_DLFTBL* dlftbl;
     mAc_overlay_info_c overlay_info; /* Required to be a struct, stubbed in GC */
 
+#ifdef TARGET_PC
+    printf("[make_actor] profile_no=%d, name_id=0x%X\n", profile_no, name_id);
+    fflush(stdout);
+#endif
+
     play = (GAME_PLAY*)game;
     dlftbl = actor_dlftbls + profile_no;
     overlay_info.actor_name = "";
     if (actor_info->total_num > mAc_MAX_ACTORS) {
+#ifdef TARGET_PC
+        printf("[make_actor] FAIL: too many actors (%d)\n", actor_info->total_num);
+        fflush(stdout);
+#endif
         return NULL;
     }
+
+#ifdef TARGET_PC
+    printf("[make_actor] dlftbl=%p, getting profile...\n", (void*)dlftbl);
+    fflush(stdout);
+#endif
 
     profile = dlftbl->profile;
+#ifdef TARGET_PC
+    printf("[make_actor] profile=%p\n", (void*)profile);
+    fflush(stdout);
+    if (profile != NULL) {
+        printf("[make_actor] profile->id=%d, class_size=%zu\n", profile->id, profile->class_size);
+        fflush(stdout);
+    }
+#endif
+
     if (Actor_data_bank_regist_check(&data_bank_idx, profile, dlftbl, play, name_id) == FALSE) {
+#ifdef TARGET_PC
+        printf("[make_actor] FAIL: bank regist check failed\n");
+        fflush(stdout);
+#endif
         return NULL;
     }
 
+#ifdef TARGET_PC
+    printf("[make_actor] calling Actor_malloc_actor_class...\n");
+    fflush(stdout);
+#endif
+
     if (Actor_malloc_actor_class(&actor, profile, dlftbl, overlay_info.actor_name, name_id) == FALSE) {
+#ifdef TARGET_PC
+        printf("[make_actor] FAIL: malloc failed\n");
+        fflush(stdout);
+#endif
         return NULL;
     }
+
+#ifdef TARGET_PC
+    printf("[make_actor] malloc OK, actor=%p\n", (void*)actor);
+    fflush(stdout);
+#endif
 
     dlftbl->num_actors++;
     Actor_init_actor_class(actor, profile, dlftbl, play, data_bank_idx, x, y, z, rot_x, rot_y, rot_z, block_x, block_z,
                            move_actor_list_idx, name_id, arg);
+#ifdef TARGET_PC
+    printf("[make_actor] init_actor_class done\n");
+    fflush(stdout);
+#endif
     Actor_info_part_new(actor_info, actor, profile->part);
+#ifdef TARGET_PC
+    printf("[make_actor] Actor_info_part_new done\n");
+    fflush(stdout);
+#endif
     mNpc_SetNpcinfo(actor, npc_info_idx);
+#ifdef TARGET_PC
+    printf("[make_actor] mNpc_SetNpcinfo done\n");
+    fflush(stdout);
+#endif
     Actor_ct(actor, game);
+#ifdef TARGET_PC
+    printf("[make_actor] Actor_ct done, returning actor=%p\n", (void*)actor);
+    fflush(stdout);
+#endif
 
     return actor;
 }

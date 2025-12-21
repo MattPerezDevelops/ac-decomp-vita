@@ -1,6 +1,11 @@
 #ifndef OS_MESG_H
 #define OS_MESG_H
 
+#ifdef TARGET_PC
+/* PC port - use PC compatibility layer which has proper SDL-based implementation */
+#include "pc/os_compat.h"
+#else
+
 #include "types.h"
 #include "dolphin/os/OSThread.h"
 #include "dolphin/os/OSMessage.h"
@@ -23,4 +28,5 @@ extern void osCreateMesgQueue(OSMessageQueue* mq, OSMessage msg, int flags);
 extern int osSendMesg(OSMessageQueue* mq, OSMessage msg, int flags);
 extern int osRecvMesg(OSMessageQueue* mq, OSMessage* msg, int flags);
 
+#endif /* !TARGET_PC */
 #endif

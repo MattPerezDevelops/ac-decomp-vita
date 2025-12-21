@@ -135,7 +135,7 @@ static int mSM_ovlptr_dllcnv_sub(void* proc, mSM_dlftbl_c* dlftbl, Submenu* subm
 
 extern void* mSM_ovlptr_dllcnv(void* proc, Submenu* submenu, int dlf_idx) {
     if (SubmenuArea_visit != NULL) {
-        return; // ??
+        return NULL; /* Return NULL when visit is active */
     } else if (mSM_ovlptr_dllcnv_sub(proc, SubmenuArea_dlftbl, submenu, dlf_idx) == FALSE) {
         return NULL;
     }
@@ -628,6 +628,16 @@ static char* mSM_Object_Exchange_keep_new(GAME_PLAY* play, s16 bank_id, size_t s
 }
 
 static void mSM_Object_Exchange_keep_new_MenuTexAndPallet(GAME_PLAY* play, int idx) {
+#ifdef TARGET_PC
+    /* PC port: now_private may not be initialized yet.
+     * Check before accessing it to prevent crash during scene loading.
+     */
+    if (Common_Get(now_private) == NULL) {
+        play->submenu_ground_tex[idx] = NULL;
+        play->submenu_ground_pallet[idx] = NULL;
+        return;
+    }
+#endif
     char* tex_p = mSM_Object_Exchange_keep_new(play, ACTOR_OBJ_BANK_14, (32 * 32) / 2);
     char* pal_p = mSM_Object_Exchange_keep_new(play, ACTOR_OBJ_BANK_15, 16 * sizeof(u16));
 

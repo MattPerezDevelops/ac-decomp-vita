@@ -1,5 +1,19 @@
 #ifndef OS_TIME_H
 #define OS_TIME_H
+
+#ifdef TARGET_PC
+/* PC port - use PC compatibility layer */
+#include "pc/os_compat.h"
+
+#define OSDiffTick(tick1, tick0) ((s32)(tick1) - (s32)(tick0))
+
+/* OSGetTime is in os_compat.h as osGetTime */
+#define OSGetTime osGetTime
+
+typedef u32 OSTick;
+
+#else
+/* GameCube build */
 #include "types.h"
 #ifdef __cplusplus
 extern "C" {
@@ -62,4 +76,6 @@ void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* td);
 #ifdef __cplusplus
 }
 #endif
-#endif
+
+#endif /* !TARGET_PC */
+#endif /* OS_TIME_H */

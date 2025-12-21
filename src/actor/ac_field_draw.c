@@ -1,5 +1,9 @@
 #include "ac_field_draw.h"
 
+#ifdef TARGET_PC
+#include <stdio.h>
+#endif
+
 #include "audio.h"
 #include "m_debug.h"
 #include "m_field_info.h"
@@ -319,6 +323,22 @@ static Vtx aFD_culling_vtx[] ATTRIBUTE_ALIGN(32) = {
     // clang-format on
 };
 
+#ifdef TARGET_PC
+/* PC port: Static display lists with pointers don't work on 64-bit.
+ * Skip the culling check (handled differently on PC) but still call the
+ * terrain display list via segment 0x0A which was set in aFD_DrawBg(). */
+static Gfx aFD_cull_set_gfx[] ATTRIBUTE_ALIGN(32) = {
+    gsSPEndDisplayList(),
+};
+
+static Gfx aFD_cull_set_model[] ATTRIBUTE_ALIGN(32) = {
+    /* Call the terrain DL that was set to segment 0x0A (10).
+     * Note: G_MWO_SEGMENT_A is 0x28 (byte offset for gSPSegment),
+     * but SEGMENT_ADDR needs the actual segment NUMBER which is 10. */
+    gsSPDisplayList(SEGMENT_ADDR(10, 0)),  /* 0x0A000000 */
+    gsSPEndDisplayList(),
+};
+#else
 static Gfx aFD_cull_set_gfx[] ATTRIBUTE_ALIGN(32) = {
     gsSPClearGeometryMode(G_FOG | G_LIGHTING),
     gsSPVertex(&aFD_culling_vtx[0], 8, 0),
@@ -332,6 +352,7 @@ static Gfx aFD_cull_set_model[] ATTRIBUTE_ALIGN(32) = {
     gsSPDisplayList(SEGMENT_ADDR(G_MWO_SEGMENT_A, 0)), /* Dynamic segment 0x0A */
     gsSPEndDisplayList(),
 };
+#endif
 
 static EVW_ANIME_SCROLL aFD_texture_scroll2_data[2] = { { 1, -1, 32, 32 }, { -1, -2, 32, 32 } };
 
@@ -400,8 +421,14 @@ static void aFD_DrawBg(Gfx* gfx, int exists, GAME* game) {
     if (gfx != NULL) {
         OPEN_DISP(game->graph);
 
+#ifdef TARGET_PC
+        /* PC port: Can't use static DL with embedded pointers (64-bit truncation).
+         * Build the display list commands directly in the dynamic buffer. */
+        gSPDisplayList(NEXT_BG_OPA_DISP, gfx);  /* Call terrain DL directly */
+#else
         gSPSegment(NEXT_BG_OPA_DISP, G_MWO_SEGMENT_A, gfx); /* Bg display list is called in between culling microcode */
         gSPDisplayList(NEXT_BG_OPA_DISP, aFD_cull_set_model);
+#endif
 
         CLOSE_DISP(game->graph);
     }

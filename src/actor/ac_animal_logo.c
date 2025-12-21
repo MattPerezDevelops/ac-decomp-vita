@@ -1,5 +1,9 @@
 #include "ac_animal_logo.h"
 
+#ifdef TARGET_PC
+#include <stdio.h>  /* For debug printf */
+#endif
+
 #include "m_common_data.h"
 #include "m_malloc.h"
 #include "m_event.h"
@@ -500,6 +504,16 @@ static void aAL_back_draw(GRAPH* graph, ANIMAL_LOGO_ACTOR* actor) {
 
   Gfx* gfx;
 
+#ifdef TARGET_PC
+  static int back_dl_debug = 0;
+  if (back_dl_debug < 3) {
+    printf("[BACK_DRAW] logo_us_backA_model=%p first_cmd=(0x%08X,0x%08X)\n",
+           (void*)logo_us_backA_model,
+           logo_us_backA_model[0].words.w0, logo_us_backA_model[0].words.w1);
+    back_dl_debug++;
+  }
+#endif
+
   Matrix_push();
   Matrix_translate(0.0f, 730.0f, 0.0f, MTX_MULT);
   Matrix_scale(0.135f, 0.135f, 0.135f, MTX_MULT);
@@ -596,6 +610,13 @@ static void aAL_press_start_draw(ANIMAL_LOGO_ACTOR* actor, GRAPH* graph) {
 static void aAL_skl_draw(GAME* game, cKF_SkeletonInfo_R_c* skl_keyframe) {
   Mtx* m;
 
+#ifdef TARGET_PC
+  /* PC Port: Skip if skeleton data is not loaded (stub skeletons are zeroed) */
+  if (skl_keyframe->skeleton == NULL || skl_keyframe->skeleton->num_shown_joints == 0) {
+    return;
+  }
+#endif
+
   OPEN_DISP(game->graph);
 
   m = GRAPH_ALLOC_TYPE(game->graph, Mtx, skl_keyframe->skeleton->num_shown_joints);
@@ -646,10 +667,25 @@ static void aAL_title_draw(GAME* game, ANIMAL_LOGO_ACTOR* actor) {
 static void aAL_actor_draw(ACTOR* actor, GAME* game) {
   ANIMAL_LOGO_ACTOR* logo_actor = (ANIMAL_LOGO_ACTOR*)actor;
   GRAPH* graph = game->graph;
-
   mFont_SetMatrix(graph, mFont_MODE_FONT);
 
+#ifdef TARGET_PC
+  static int draw_debug = 0;
+  if (draw_debug < 30) {
+    printf("[LOGO_DRAW] action=%d (need>=%d for back_draw)\n",
+           logo_actor->action, aAL_ACTION_BACK_FADE_IN);
+    draw_debug++;
+  }
+#endif
+
   if (logo_actor->action >= aAL_ACTION_BACK_FADE_IN) {
+#ifdef TARGET_PC
+    static int back_draw_debug = 0;
+    if (back_draw_debug < 5) {
+      printf("[LOGO_DRAW] Calling aAL_back_draw! opacity=%d\n", logo_actor->back_opacity);
+      back_draw_debug++;
+    }
+#endif
     aAL_back_draw(graph, logo_actor);
   }
 

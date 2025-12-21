@@ -257,9 +257,17 @@ extern void graph_dt(GRAPH* graph);
 
 #define FONT_DISP __font_gfx
 
+#ifdef TARGET_PC
+/* PC port: Use intptr_t for 64-bit pointer arithmetic */
+#include <stdint.h>
+#define GRAPH_ALLOC(graph, size)                        \
+    ((void*)((graph)->polygon_opaque_thaga.tha.tail_p = \
+                 (char*)((intptr_t)(graph)->polygon_opaque_thaga.tha.tail_p - (intptr_t)(size))))
+#else
 #define GRAPH_ALLOC(graph, size)                        \
     ((void*)((graph)->polygon_opaque_thaga.tha.tail_p = \
                  (char*)((int)(graph)->polygon_opaque_thaga.tha.tail_p - (int)(size))))
+#endif
 #define GRAPH_ALLOC_TYPE(graph, type, num) (GRAPH_ALLOC(graph, sizeof(type) * (num)))
 
 #if VERSION != VER_GAFU01_00

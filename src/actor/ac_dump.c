@@ -155,7 +155,15 @@ static void aDUM_actor_init(ACTOR* actor, GAME* game) {
 }
 
 static void aDUM_actor_draw(ACTOR* actor, GAME* game) {
+#ifdef TARGET_PC
+    /* PC port: use runtime model loader for dynamically patched display lists */
+    extern Gfx* model_loader_get_dump_s_dl(void);
+    extern Gfx* model_loader_get_dump_w_dl(void);
+    Gfx* model_s = model_loader_get_dump_s_dl();
+    Gfx* model_w = model_loader_get_dump_w_dl();
+#else
     static Gfx* model[] = { dump_s_DL_model, dump_w_DL_model };
+#endif
     DUMP_ACTOR* dump = (DUMP_ACTOR*)actor;
 
     GRAPH* graph = game->graph;
@@ -163,9 +171,19 @@ static void aDUM_actor_draw(ACTOR* actor, GAME* game) {
     int type;
     Gfx* gfx;
     Mtx* cur;
+    Gfx* draw_model;
 
     type = dump->season == mTM_SEASON_WINTER;
     pal = Common_Get(clip.structure_clip)->get_pal_segment_proc(aSTR_PAL_DUMP);
+
+#ifdef TARGET_PC
+    draw_model = type ? model_w : model_s;
+    if (draw_model == NULL) {
+        return;  /* Model not loaded yet */
+    }
+#else
+    draw_model = model[type];
+#endif
 
     _texture_z_light_fog_prim_npc(graph);
 
@@ -180,7 +198,7 @@ static void aDUM_actor_draw(ACTOR* actor, GAME* game) {
 
     if (cur != NULL) {
         gSPMatrix(gfx++, cur, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        gSPDisplayList(gfx++, model[type]);
+        gSPDisplayList(gfx++, draw_model);
         SET_POLY_OPA_DISP(gfx);
     }
 

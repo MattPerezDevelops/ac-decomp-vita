@@ -1,6 +1,11 @@
 #ifndef _DOLPHIN_OSCONTEXT_H_
 #define _DOLPHIN_OSCONTEXT_H_
 
+#ifdef TARGET_PC
+/* PC port - use PC-specific stub */
+#include "pc/dolphin/os/OSContext.h"
+#else
+
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -170,4 +175,5 @@ void OSFillFPUContext(OSContext *context);
 }
 #endif
 
-#endif
+#endif /* !TARGET_PC */
+#endif /* _DOLPHIN_OSCONTEXT_H_ */

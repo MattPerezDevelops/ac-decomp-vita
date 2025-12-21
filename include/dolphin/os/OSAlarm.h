@@ -1,6 +1,11 @@
 #ifndef DOLPHIN_OS_ALARM_H
 #define DOLPHIN_OS_ALARM_H
 
+#ifdef TARGET_PC
+/* PC port - use PC-specific stub */
+#include "pc/dolphin/os/OSAlarm.h"
+#else
+
 #include "types.h"
 #include "dolphin/os/OSTime.h"
 #include "dolphin/os/OSContext.h"
@@ -38,4 +43,5 @@ BOOL OSCheckAlarmQueue(void);
 }
 #endif
 
+#endif /* !TARGET_PC */
 #endif  // DOLPHIN_OS_ALARM_H

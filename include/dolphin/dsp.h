@@ -1,6 +1,11 @@
 #ifndef DSP_H
 #define DSP_H
 
+#ifdef TARGET_PC
+/* PC port - use PC-specific stub */
+#include "pc/dolphin/dsp.h"
+#else
+
 #include "types.h"
 #include "dolphin/os/OSTime.h"
 
@@ -68,4 +73,5 @@ void __DSP_debug_printf(const char* fmt, ...);
 }
 #endif
 
-#endif
+#endif /* !TARGET_PC */
+#endif /* DSP_H */

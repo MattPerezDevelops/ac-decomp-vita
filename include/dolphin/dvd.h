@@ -224,7 +224,12 @@ void DVDDumpWaitingQueue();
 
 #define DVD_WATYPE_MAX 2
 
+#ifdef TARGET_PC
+/* PC: Declare as extern (defined in gc_stubs.c) */
+extern DVDDiskID DiskID;
+#else
 DVDDiskID DiskID AT_ADDRESS(0x80000000);
+#endif
 
 //////////////////////////////////
 

@@ -1,6 +1,11 @@
 #ifndef _DOLPHIN_CARD
 #define _DOLPHIN_CARD
 
+#ifdef TARGET_PC
+/* PC port - use PC-specific stub (memory cards replaced with file I/O) */
+#include "pc/dolphin/card.h"
+#else
+
 #include <dolphin/types.h>
 #include <dolphin/dsp.h>
 #include <dolphin/dvd.h>
@@ -277,4 +282,6 @@ s32 CARDWriteAsync(CARDFileInfo* fileInfo, const void* addr, s32 length, s32 off
 #ifdef __cplusplus
 }
 #endif
+
+#endif /* !TARGET_PC */
 #endif // _DOLPHIN_CARD

@@ -1,12 +1,22 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#ifdef TARGET_PC
+/* PC port - use PC-specific types instead of GameCube */
+#include "pc/types.h"
+#else
+/* GameCube build - use original headers */
 #include "MSL_C/w_math.h"
 #include <dolphin/types.h>
 #include "macros.h"
+#endif /* TARGET_PC */
 
+/* Version definitions - shared between PC and GameCube */
 #define VER_GAFE01_00 0
 #define VER_GAFU01_00 1
+
+#ifndef TARGET_PC
+/* GameCube-specific type definitions */
 
 // TODO: add PAL version to this check
 // Adjusts values based on regional frame rate (Hz)
@@ -65,6 +75,11 @@ typedef u32 unknown;
 #endif
 #endif
 #define nullptr 0
+
+#endif /* !TARGET_PC - end GameCube-specific types */
+
+#ifndef TARGET_PC
+/* GameCube-specific macros (PC version has these in pc/types.h) */
 
 // #ifdef __MWERKS__
 // #define AT_ADDRESS(x) : (x)
@@ -165,8 +180,11 @@ typedef u32 unknown;
 #define BSS_ORDER_ITEM(v)
 #endif
 
-#ifndef __cplusplus
+#endif /* !TARGET_PC - end GameCube-specific macros */
+
+#if !defined(__cplusplus) && !defined(TARGET_PC)
 // Some definitions rely on wchar_t being defined
+// (PC gets wchar_t from stddef.h)
 typedef unsigned short wchar_t;
 #endif
 

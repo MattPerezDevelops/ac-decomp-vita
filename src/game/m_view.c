@@ -1,5 +1,9 @@
 #include "m_view.h"
 
+#ifdef TARGET_PC
+#include <stdio.h>
+#endif
+
 #include "main.h"
 #include "m_common_data.h"
 #include "m_field_info.h"
@@ -22,6 +26,9 @@ static void set_viewport(Vp* viewport, rect* screen_rect) {
 }
 
 extern void initView(View* view, GRAPH* graph) {
+#ifdef TARGET_PC
+  printf("[initView] CALLED view=%p graph=%p\n", (void*)view, (void*)graph);
+#endif
   view->graph = graph;
   
   view->screen.top = 0;
@@ -39,7 +46,23 @@ extern void initView(View* view, GRAPH* graph) {
   view->far = 1600.0f;
 
   view->scale = 1.0f;
-  
+
+#ifdef TARGET_PC
+  /* PC port: Default camera looking at terrain center from above/behind.
+   * Terrain vertices span world coords (0,0,0) to (10240,0,10240).
+   * Camera should look at terrain center (~5120, 0, ~5120). */
+  view->eye.x = 5120.0f;    /* Center of terrain X */
+  view->eye.y = 6000.0f;    /* Height above terrain */
+  view->eye.z = -2000.0f;   /* Behind terrain, looking forward (+Z) */
+
+  view->center.x = 5120.0f; /* Terrain center X */
+  view->center.y = 0.0f;
+  view->center.z = 5120.0f; /* Terrain center Z */
+
+  printf("[initView] PC camera: eye=(%.0f,%.0f,%.0f) center=(%.0f,%.0f,%.0f)\n",
+         view->eye.x, view->eye.y, view->eye.z,
+         view->center.x, view->center.y, view->center.z);
+#else
   view->eye.x = 0.0f;
   view->eye.y = 0.0f;
   view->eye.z = -1.0f;
@@ -54,6 +77,7 @@ extern void initView(View* view, GRAPH* graph) {
   view->center.y = 0.0f;
   view->center.z = 0.0f;
   #endif
+#endif
 
   view->up.x = 0.0f;
   view->up.y = 1.0f;
